@@ -1,0 +1,128 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{subfiles}
+\usepackage{amsmath}
+\usepackage[margin=1in]{geometry}
+\begin{document}
+\section{introduction}
+\paragraph{\quad}The study of slamming load between water and structures is 
+                of great significance in engineering for a long time, and the 
+                magnitude of slamming load is usually difficult to predict due 
+                to the complexity of the problem. For some cases, the influence 
+                of air is non-negligible for the impact characteristics since the 
+                existence of the air-cushion effect in water entry can buffer the 
+                impact of the structure, thereby reducing the slamming load. To 
+                investigate these slamming loads, many researchers have performed 
+                a lot of remarkable work. A pioneering experimental research carried 
+                out by Chuang (1966) focused on the impact of the wedges with 
+                different deadrise angles, which firstly demonstrated that compared 
+                with the classical Wagner theory (Über, 1932), the air cushion can 
+                considerably reduce the slamming loads in practice. Subsequently, Lewison (1968) 
+                pointed out that, the air would be forced into the water during the 
+                impact when the deadrise angle is small enough, implying the coalescence 
+                between the water and vapour. In addition, in the experiments on 
+                free-falling plates studied by Okada and Sumi (2000), it was found that 
+                the effects of impact would be classified according to the impact angle. 
+                For the cases with impact angles greater than 4◦, the “Wagner-type” impact 
+                pressure was large and very sharp both in time and space. For the cases with 
+                impact angles smaller than 4◦, the impact pressure becomes much smaller and 
+                smoother owing to the cushioning effect of air.
+\paragraph{\quad}长期以来，水和结构物间的砰击载荷的研究在工程中具有重要意义，并且由于问题的复杂性，砰击载荷
+                的大小通常难以预测。在某些情况下，空气对与砰击特性的影响是不可忽略的，因为入水处气垫效应的存在
+                能缓冲结构物的砰击，从而减小砰击载荷。为了研究这种砰击载荷，很多研究者做出了许多卓越的工作。
+                由Chuang(1996)提出的一项开创性的实验研究，重点研究了不同静升角的楔形块的砰击，首次证明了
+                与经典瓦格纳理论相比，在实践中气垫可以显著减小砰击载荷。随后，Lewison(1968)指出，当静升角
+                足够小时，空气可能会被迫进入水中，这意味水和蒸汽的结合。此外，在Okada和Sumi(2000)研究的自由落体
+                板实验中，发现砰击类型可根据砰击角度分类。在砰击角度大于四度时，在时间和空间上瓦格纳类型的砰击压力
+                都非常大且尖锐。在砰击角度小于四度时，由于空气的缓冲作用，砰击压力会变得更小且更平滑。
+\paragraph{\quad}With the rapid development of the computational fluid dynamics, many numerical
+                research have been conducted to analyze the slamming loads. Ng and Kot (1992) 
+                used the volume-of-fluid (VOF) method to study the impact of the flat plate, 
+                but the incompressible air phase was set in their model. They found that before 
+                the impact, the air could make the water surface deformed. In the work of Yang 
+                and Qiu (2012), some problems of water slamming, including the impact of the 
+                plate on water, were studied by finite difference method (FDM). In their results, 
+                the slamming pressure was basically consistent with the experimental data, 
+                indicating the cushioning effect of air was captured. Moreover, Ma et al. (2014) 
+                established the compressible multiphase model of water slamming based on the 
+                Finite Volume Method (FVM) to solve the problems of strongly entrained wave impact.
+\paragraph{\quad}随着CFD的快速发展，涌现出了大量对砰击载荷的数值研究。Ng和Kot(1992)基于VOF方法研究了平板冲击问题，
+                但是在他们的模型中空气被设置成不可压流体。他们发现在砰击前空气会使水面变形。在Yang和Qiu(2012)的工
+                作中，他们使用了FDM方法研究了一些水击问题，包括板对水的砰击问题。研究发现砰击压力基本上和实验数据
+                一致，这表明验证了空气的缓冲作用的存在。Moreover,Ma et al.(2014)建立了基于FVM方法的水击可压缩
+                多相求解器，用以求解强卷吸波问题。
+\paragraph{\quad}In recent years, particle methods have shown great developments in both theories
+                and applications. Thanks to its Lagrangian characteristics, the particle method is 
+                more flexible to deal with the interface compared to the above mesh methods and it 
+                is very suitable to solve the problems involving large deformations including the 
+                problem of free-surface flows (Antuono et al., 2010; Lind et al., 2012; Zhang 
+                and Liu, 2018; Kazemi et al., 2020), multiphase flows (Yang et al., 2020; Gong et al., 2016; 
+                Chen et al., 2015; Sun et al., 2021a, 2021b) and fluid-structure couplings 
+                (Khayyer et al., 2021; Zhang et al., 2019; Nasar et al., 2019; Liu and Zhang, 2019; Liu et al., 2014). 
+                Many studies on impact problems have been carried out by particle methods 
+                (see e.g. Gong et al., 2019; Wang et al., 2019a; Sun et al., 2018).
+                However, there are few studies focusing on the cushioning effect of the trapped 
+                air for impact problems in particle methods. Lind et al. (2015) proposed an 
+                incompressible-compressible SPH model to predict the slamming pressure peak when the flat plate 
+                impacts on waves of different slopes. In their numerical model, the air is solved by weakly 
+                compressible SPH (WCSPH) method, and the water is solved by incompressible SPH (ISPH) method. 
+                Khayyer and Gotoh (2016) proposed another compressible-incompressible multiphase model based 
+                on the projection-based particle method to predict the slamming load. This method can be considered 
+                as the extended version of Moving Particle Semi-implicit (MPS) method, and their numerical results 
+                show good agreement with experimental data. In addition, Marrone et al. (2018) studied the impact 
+                pressure of the flat panels with small deadrise angles, and the ditching problem including 
+                a large horizontal velocity component is discussed.
+\paragraph{\quad}近年来，粒子方法在理论和应用方面均展现出巨大的发展。得益于其拉格朗日特性，粒子方法处理表面比上述网格方法更灵活，
+                并且非常适合求解大变形问题，包括自由表面流问题(Antuono et al.,2010;Lind et al.,2012;Zhang and Liu,2018;Kazemi et al.,2020),
+                多相流问题(Yang et al.,2020;Gong et al.,2016;Chen et al.,2015;Sun et al.,2021a,2021b)和流固耦合
+                (Khayyer et al.,2021;Zhang et al.,2019;Nasar et al.,2019;Liu and Zhang,2019;Liu et al.,2014)。
+                许多关于冲击问题的研究都是通过粒子方法进行(见Gong et al.,2019;Wang et al.,2019a;Sun et al.,2018)。
+                然而却很少有研究使用粒子方法研究砰击问题中被困空气的缓冲效应。Lind et al.(2015)提出一种不可压-可压SPH模型，
+                用以预测平板与不同坡度波浪砰击的砰击压力峰值。在他们的模型中，空气使用弱可压SPH(WCSPH)方法求解,而水使用不可压
+                SPH方法(ISPH)求解。Khayyer and Gotoh(2016)提出另一种基于基于投影的粒子方法的可压缩-不可压缩多相模型，用以
+                预测砰击载荷。这个方法可被视为移动粒子半隐式方法(MPS)的扩展版本，并且他们的数值结果和实验数据呈现出良好的一致性。
+                此外，Marrone et al.(2018)研究了小静升角的平板砰击压力，并讨论了包括大水平速度分量在内的飞机水面迫降问题。
+\paragraph{\quad}Although these numerical methods can observe intuitive fluid flows and can predict 
+                the impact pressure, considering the extreme cases of the slamming problem, the numerical 
+                simulation also faces some great challenges in accurately predicting the impact pressure. 
+                To analyze these tough slamming problems, considering the advantage of the Riemann solver 
+                to the problems of discontinuities, a multiphase Riemann SPH method is applied in the 
+                present work. In order to reduce the excessive numerical dissipation induced by the 
+                Riemann solver, a dissipation limiter for the PVRS Riemann solver is given. Owing to the 
+                usage of the Riemann solver, the present SPH method can deal with the present slamming 
+                problems with large discontinuities well, and the adopted PVRS approximate Riemann solver 
+                can better handle the problem with large density ratios. Besides, Riemann-SPH makes the 
+                stability constraint less severe and allows to set a water speed of sound able to fulfil 
+                the weakly compressible constraint (Hammani et al., 2020). For the correct simulation of 
+                the air cushion effect during water impact, the importance of using the real gas speed of 
+                sound was underlined as early as in Colagrossi and Landrini (2003). Taking this into 
+                consideration, the present SPH based on the Riemann solver uses the physical air sound 
+                speed to simulate the present problem. To maintain the uniform particle distribution and 
+                thus improving the numerical accuracy, the particle shifting technique is adopted. 
+                To verify the accuracy and the convergence of the adopted multiphase SPH method, a water 
+                slamming of a flat plate is simulated. Further, the influences of the air-cushion effect 
+                and the plate length on the slamming load are discussed. Moreover, a complex engineering 
+                problem, i.e., the slamming of the LNG tank insulation panel is simulated, and the 
+                influences of the impact velocity and deadrise angle on slamming load characteristics are analyzed.
+\paragraph{\quad}尽管这些数值方法可以观察直观的流体流动并且能够预测砰击压力，但是考虑到砰击问题的极端情况，这些数值方法在精确
+                预测砰击载荷方面也面临着一些极大的挑战。为了研究分析这些棘手的砰击问题，考虑到黎曼求解器求解非连续性问题的优势，
+                本文采用多相黎曼SPH方法。为了减少由黎曼求解器引起的数值耗散,给出了PVRS黎曼求解器的耗散限制器。由于使用了黎曼
+                求解器，当前的SPH方法可以很好地处理大间断的砰击问题，同时采用的RVRS近似黎曼求解器能够更好地处理大密度比问题。
+                除此之外，黎曼-SPH方法使得稳定性约束不那么苛刻，同时允许设置能够满足弱可压约束的水声速(Hammani et al.,2020)。
+                为了正确模拟水击过程中的气垫效应，早在Colagrossi和Landrini(2003)就强调了真实气体中的声速的重要性。考虑到这一
+                点，当前基于黎曼求解器的SPH方法使用了物理空气声速模拟当前问题。为了保持粒子分布均匀并提高数值精度，本文采用了
+                粒子转移技术。为验证采用的多相SPH方法的精度和收敛性，对平板水击进行了模拟。进一步讨论了气垫效应和板长对于砰击载荷
+                的影响。此外，对一个复杂的工程问题，即LNG船保温板的砰击模拟，并分析了砰击速度和静升角度对砰击载荷特性的影响。
+\paragraph{\quad}The paper is structured as follows: firstly, the adopted SPH method is introduced in 
+                Section 2. Then in Section 3, through the test of water slamming of the plate, the 
+                accuracy and convergence of the adopted method are validated, and the influences of 
+                the air cushion and the plate length on the slamming load are discussed. Subsequently, 
+                the slamming of the LNG tank insulation panel is simulated, and the influences of the 
+                impact velocity and deadrise angle on slamming load characteristics are analyzed. At 
+                last, some conclusions are enclosed in Section 4.
+\paragraph{\quad}本文的结构如下：首先在第二节介绍了采用的SPH方法。在第三节通过板的水击试验，对采用方法的精确性和收敛性进行了
+                验证，并讨论了气垫和板长对砰击载荷的影响。随后，对LNG船的保温板砰击进行模拟，并分析了砰击速度和静升角度对砰击
+                载荷特性的影响。最后，在第4节中给出了一些结论。
+
+\end{document}
