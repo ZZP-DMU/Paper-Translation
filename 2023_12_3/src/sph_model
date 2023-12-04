@@ -1,0 +1,328 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{subfiles}
+\usepackage{amsmath}
+\usepackage[margin=1in]{geometry}
+\begin{document}
+\section{Multiphase Riemann SPH model-多相黎曼求解器}
+
+\subsection{Governing equations-控制方程}
+\paragraph{\quad}In the SPH scheme, the fluid dynamics are usually solved 
+                by the Navier–Stokes equation. For the weakly-compressible fluid, 
+                the discretized governing equations (Sun et al., 2018) in SPH 
+                method are usually written as follows
+\paragraph{\quad}在SPH方法中，通常用Navier-Stokes方程对流体动力学进行求解。对于弱可压流体，
+                SPH方法中的离散控制方程(Sun et al.,2018)通常写作如下形式
+
+%formula 1
+
+\paragraph{\quad}in which the subscript a denotes the a-th particle, and subscript
+                 b represents the particles in the support region of particle a. 
+                 The variables $\rho$, $\mathbf{v}$, $V$, $\mathbf{g}$ and $p$ refer 
+                 to the density, velocity, volume, gravitational acceleration and 
+                 pressure, respectively.$W(|\mathbf{r}_a-\mathbf{r}_b|, h) $is the kernel function, 
+                 in which the vector $\mathbf{r}$ denotes the particle coordinate, and h 
+                 represents the smoothing length.
+\paragraph{\quad}式中，下标a表示第a个粒子，下标b表示在粒子a的支持域内的粒子。变量
+                $\rho$, $\mathbf{v}$, $V$, $\mathbf{g}$ and $p$ 分别代表密度，速度，体积，
+                重力加速度和压力。$W(|\mathbf{r}_a-\mathbf{r}_b|, h) $是核函数，其中向量$\mathbf{r}$
+                表示粒子的坐标，h表示光滑长度。
+
+\paragraph{\quad}In the Riemann SPH method, every particle pair is regarded as a onedimensional 
+                Riemann problem, and the solution to every onedimensional Riemann problem can 
+                be obtained by the Riemann solver. In this way, the numerical solution of the whole 
+                field can be obtained. Specifically, particles b and a respectively carry the state 
+                of left S1 and the state of right S2, and the variables of the two states (Toro, 2013) 
+                can be written as follows
+\paragraph{\quad}在黎曼SPH方法中，每个粒子对都被视为一维的黎曼问题，并且每个一维黎曼问题的解都可以通过黎曼求解器得到。
+                通过这个方法，我们可以得到整个流场的数值解。具体来说，粒子b和粒子a分别携带了左S1状态和右S2状态，其中两
+                种状态的变量可以写成以下形式
+
+%formula 2
+
+\paragraph{\quad}in which the subscripts L and R refer to the states of left and right, 
+                respectively. These two states represent expansion or shock waves, and 
+                the solution to the Riemann problem consists of two star regions which 
+                are denoted by the intermediate variables $\rho^*_L, u^*_L, p^*_L$ and $\rho^*_R, u^*_R, p^*_R$, 
+                respectively. For these variables, the conditions of $u^*_L = u^*_R = u^* $and $p^*_L = p^*_R = p^* $
+                need to be satisfied. Considering the approximations of $\mathbf{u}_a + \mathbf{u}_b \approx 2\mathbf{u}^* $and$p_a + p_b \approx 2p^*$, 
+                the discrete form of governing equations (Toro, 2013) can be rewritten as follows:
+\paragraph{\quad}式中，下标L和R分别代表左边的状态和右边的状态。这两种状态代表膨胀波或者冲击波，黎曼问题
+                的解由两个星型区域组成，分别用中间变量$\rho^*_L, u^*_L, p^*_L$ and $\rho^*_R, u^*_R, p^*_R$表示。
+                对于这些变量，需要满足 $u^*_L = u^*_R = u^* $和$p^*_L = p^*_R = p^* $这两个条件。
+                考虑到 $\mathbf{u}_a + \mathbf{u}_b \approx 2\mathbf{u}^* $and$p_a + p_b \approx 2p^*$的
+                近似条件，控制方程的离散形式可以写出以下形式
+
+% formula 3
+
+\paragraph{\quad}in which $\mathbf{u}^*$ is computed by $\mathbf{u}^* = \mathbf{u}^*\hat{r}_{ab} + [ \frac{\mathbf{u}_a +\mathbf{u}_b}{2}-\frac{(u_L+u_R)\hat{r}_{ab}{2} ] $, 
+                and the unit vecto $\mathbf{r}_{ab}$ is defined as  $\matbf{r}_{ab} = \frac{\mathbf{r}_a-\mathbf{r}_b}{|\mathbf{r}_a-\mathbf{r}_b|}$. $p^*$and $u^*$ 
+                are intermediate variables which are solved by approximated Riemann 
+                solvers. In this work, the PVRS approximate Riemann solver (Toro, 2013) 
+                is adopted. This Riemann solver determines the intermediate 
+                variables $u^*$ and $p^*$ by considering the fluid impedance, and therefore, 
+                it is suitable for handling the problem with a large density ratio. 
+                For the adopted PVRS approximate Riemann solver, $u^*$ and $p^*$ (Toro, 2013) 
+                are solved by
+\paragraph{\quad}式中， $\mathbf{u}^*$使用$\mathbf{u}^* = \mathbf{u}^*\hat{r}_{ab} + [ \frac{\mathbf{u}_a +\mathbf{u}_b}{2}-\frac{(u_L+u_R)\hat{r}_{ab}{2} ] $
+                计算，单位向量$\mathbf{r}_{ab}$ 定义为 $\matbf{r}_{ab} = \frac{\mathbf{r}_a-\mathbf{r}_b}{|\mathbf{r}_a-\mathbf{r}_b|}$.
+                $p^*$和 $u^*$是由近似黎曼求解器求解的中间变量。本文采用PVRS近似黎曼求解器(Toro,2013)。
+                这个黎曼求解器通过考虑流体阻抗来确定中间变量  $u^*$ 和$p^*$，因此该方法适合处理大密度比问题。
+                对于采用的PVRS近似黎曼求解器， $u^*$ 和 $p^*$(Toro,2013)采用下式求解
+                
+%formula 4
+
+\paragraph{\quad}in which $(\rho_L, \mathbf{u}_L, p_L, c_L) = (\rho_b, \mathbf{u}_b \cdot \hat{x}_{ab}, p_b, c_b)$ and 
+                $(\rho_R, \mathbf{u}_R, p_R, c_R) = (\rho_a, \mathbf{u}_a \cdot \hat{x}_{ab}, p_a, c_a)$, and $Z_L$ and
+                $Z_R$ represent $\rho_b c_b$ and $\rho_a c_a$,respectively. $c $denotes the speed of sound.
+\paragrap{\quad}式中，$(\rho_L, \mathbf{u}_L, p_L, c_L) = (\rho_b, \mathbf{u}_b \cdot \hat{x}_{ab}, p_b, c_b)$且
+                $(\rho_R, \mathbf{u}_R, p_R, c_R) = (\rho_a, \mathbf{u}_a \cdot \hat{x}_{ab}, p_a, c_a)$，同时 $Z_L$ 和
+                $Z_R$ 分别表示 $\rho_b c_b$ 和 $\rho_a c_a$。$c$表示声速。
+            
+\paragraph{\quad}To reduce the numerical dissipation led by the Riemann solver, similar to the work 
+                of Zhang et al. (2017) and Meng et al. (2020), a dissipation limiter is applied in the 
+                computation of $p^*$. According to the method of Meng et al. (2020) which proposed a 
+                dissipation limiter for the Roe's approximate Riemann solver, a dissipation limiter 
+                for the PVRS approximate Riemann solver is derived in this paper, and $p^*$is obtained as
+\paragraph{\quad}为减少由黎曼求解器造成的数值耗散，与Zhang et al. (2017)以及Meng et al. (2020)的工作相似，我们在$p_*$的计算中
+                应用了耗散限制器。根据Meng et al. (2020)提出Roe近似黎曼求解器的耗散限制器的方法，本文对PVRS近似黎曼求解器
+                的限制器进行了推导，其中$p^*$由下式得到
+    
+%formula 5
+
+\paragraph{\quad}in which the value of $\phi$ is determined by $\phi = min{λmax[\tilde{ρ}(u_L-u_R), 0], c_{RL}/D}$, 
+                 where $\tilde{\rho}$ is computed by $\tilde{ρ} = \frac{2 \rho_L \rho_R}{\rho_L + \rho_R} $and $c_{RL}$is defined as
+                 $c_{RL} = \frac{c_R \rho_R \sqrt{\rho_R} + \c_L \rho_L \sqrt{\rho_L}}{\sqrt{\rho_L}+\sqrt{\rho_R}}$.
+                 According to the literature (Meng et al., 2020), 
+                 $\nabla$ can be derived as $\nabla =\frac{ \alpha h (c_a+c_b) }{2D(u_L-u_R)|\mathbf{x}_a-mathbf{x}_b|}$, 
+                 in which $D = \frac{2Z_L Z_R}{Z_L + Z_R}$, and the value of the parameter $\alpha$ 
+                 is set to 0.03 for all SPH simulations in this paper. 
+                 In present work, the smoothing length is set to 1.2 times of the initial particle 
+                 spacing, i.e. $h = 1.2 \Delta x$, and the improved Gaussian kernel function (Grenier et al., 2009) 
+                 is adopted. In order to integrate the above governing equations, the predictor-corrector 
+                 algorithm (Wang et al., 2019b) is applied in the present SPH scheme.
+\paragraph{\quad}式中，$\phi$的值由 $\phi = min{λmax[\tilde{ρ}(u_L-u_R), 0], c_{RL}/D}$计算得到，其中 $\tilde{\rho}$
+                由 $\tilde{ρ} = \frac{2 \rho_L \rho_R}{\rho_L + \rho_R} $得到，而 $c_{RL}$定义为
+                $c_{RL} = \frac{c_R \rho_R \sqrt{\rho_R} + \c_L \rho_L \sqrt{\rho_L}}{\sqrt{\rho_L}+\sqrt{\rho_R}}$.
+                根据文献(Meng et al., 2020),$\nabla$可被推导为$\nabla =\frac{ \alpha h (c_a+c_b) }{2D(u_L-u_R)|\mathbf{x}_a-mathbf{x}_b|}$，
+                式中 $D = \frac{2Z_L Z_R}{Z_L + Z_R}$，而$\alpha$的值在该文中所有的模拟中都设置为0.03.本文中，光滑长度
+                设置为1.2倍的初始粒子间距，即 $h = 1.2 \Delta x$,并采用改进高斯核函数(Grenier et al., 2009)。
+                为了对上述控制方程进行积分，本文的SPH方法采用了预测-校正算法。
+
+
+\subsection{State equation of fluid-流体的状态方程}
+\paragraph{\quad}To make the governing equations closed, the equation of state is added
+                in the SPH scheme. In present work, Tait state equation (Ming et al., 2017) 
+                is adopted with the form of
+\paragraph{\quad}为使控制方程封闭，需要在SPH方法中加入状态方程。本文采用了下式形式的Tait状态方程
+
+%formula 6
+
+\paragraph{\quad}in which $\rho_0$ refers to the reference density and $c_0$ denotes the 
+                artificial sound speed. $\gamma$ is the characteristic exponent which is 
+                set as 1.4 and 7 for the air and water, respectively. In this paper, 
+                the pressure cut-off model is adopted, that is, when the pressure of 
+                fluid is less than zero, it is set to zero.
+\paragraph{\quad}式中$\rho_0$表示参考密度，$c_0$表示人工声速。$\gamma$是特征指数，空气和水分别设置
+                为1.4和7.本文采用了压力截断模型,即当流体压力小于零时将压力值设为零。
+
+\paragraph{\quad}Considering the weakly-compressible SPH method is used, 
+                to ensure the variation of the fluid density is within 0.01, 
+                the speed of sound of water (Hammani et al., 2020) is determined by
+\paragraph{\quad}考虑到使用了弱可压SPH方法，为保证流体密度变化在0.01内，由下式确定水声速(Hammani et al., 2020)
+
+%formula 7
+
+\paragraph{\quad}in which for this problem of water entry, instead of the 
+                impact velocity, the estimated maximum velocity in the 
+                flow field $|\mathbf{u}_{max}|$ is used in the calculation of the sound 
+                speed for liquid phase (Marrone et al., 2017, 2018). 
+                Thanks for the discussion in Marrone et al. (2017), 
+                for such impact problems with small dead-rise angles, 
+                the velocity of the water jet formed by the impact cannot 
+                be neglected and can be viewed as the estimated maximum 
+                velocity to determine the sound speed. Considering a 
+                reasonable proposal for the estimated jet velocity mentioned 
+                in Marrone et al. (2017), the velocity of water jet is taken as 
+                10 times of the impact velocity, that is, $c_{water} = 100U_{impact} 
+                (Ma = U_{impact}/c_{water} = 0.01)$, which is considered as a good 
+                compromise for the WCSPH. In addition, in the study of the impact 
+                of a flat plate by multiphase SPH method carried out by Cheng et al. 
+                (2017), it is reported that the numerical result with 
+                $Ma = U_{impact}/c_{water} = 0.02$ is more consistent with the experimental 
+                result. Taking the above considerations into account and after the 
+                testing, for all the simulations in this paper, the sound speed of water 
+                satisfying $Ma = U_{impact}/c_{water} = 0.015$ is adopted. $\Delta p_{max}$ is the maximum 
+                pressure variation in the liquid phase. For the air phase, the physical 
+                speed of sound is taken into account.
+\paragraph{\quad}其中，对于该入水问题，在计算液相的声速(Marrone et al., 2017,2018)时，采用流
+                场中的最大估计速度代替砰击速度。得益于Marrone et al. (2017)的讨论，对这种小静升角度的砰击
+                问题，砰击形成的水射流的速度不能被忽略，且可视为确定声速的最大估计速度。考虑到
+                Marrone et al. (2017) 提到的对于估计射流速度的合理建议，即 $c_{water} = 100U_{impact} 
+                (Ma = U_{impact}/c_{water} = 0.01)$，这被视为WCSPH方法的良好折中方案。
+                此外，在由Cheng et al. (2017)提出的基于多相SPH方法的平板砰击研究中，表明了$Ma = U_{impact}/c_{water} = 0.02$
+                时的数值结果和实验结果更加吻合。平衡上述考量并经测试，本文所有的模拟中的水声速采用 $Ma = U_{impact}/c_{water} = 0.015$.
+                $\Delta p_{max}$是液相中最大的压力变化。对于气相，考虑了物理声速。 
+
+\paragraph{\quad}In present work, the time step is determined by the following
+                CFL condition.in which $c_{max}$ refers to the maximum fluid sound speed. 
+\paragraph{\quad}本文中，时间步由下面的CFL条件确定，式中$c_{max}$表示流体最大声速。
+
+%formula 8
+
+
+\subsection{Treatment of fluid-structure interface-流固界面的处理}
+\paragraph{\quad}As for dealing with fluid-structure interaction problems, it is still 
+                difficult to handle the complicated moving boundaries in SPH method. 
+                For fluid particles, the compact region truncation caused by outer 
+                boundaries leads to the error of the particle approximation and loses 
+                the accuracy of numerical results. Therefore, for SPH method, a lot of 
+                work has been carried out on the treatment of solid boundary 
+                (Adami et al., 2012; Shao et al., 2012; Leffe et al., 2009; Monaghan and Kajtar, 2009). 
+                The treatment on solid boundary in SPH method can be roughly divided into two sorts; 
+                one is to arrange one layer of particles as the solid wall boundary, in which the 
+                repulsive force is introduced to prevent the penetration of fluid particles. The other 
+                one is to set the multi-layer particles as the solid wall boundary to guarantee the 
+                integrity of the compact region. In this work, the wall boundary condition developed 
+                by Adami et al. (2012), whose accuracy and robustness have been proved by many works, 
+                is applied. In this boundary condition, the multi-layer dummy particles are placed, which 
+                can ensure that for the fluid particles, the particle approximations can be conducted by 
+                enough particles in the compact region. In addition, dummy particles are viewed as fluid 
+                particles to participate in the information update (e.g. density, velocity, etc.) of other 
+                fluid particles. For dummy particles (Adami et al., 2012), the pressure is obtained by 
+                interpolating from fluid particles in the compact region as follows:
+\paragraph{\quad}至于处理流固耦合问题，SPH方法依然很难处理复杂的运动边界。对于弱可压流体
+                粒子，由与外部边界导致的紧支域截断会产生粒子近似的误差和数值结果精度的丢失。
+                因此，对于SPH方理固体边界的处理(Adami et al.,2012;Shao et al.,2012;Leffe et al., 
+                2009;Monaghan and Kajtar, 2009)，已经开展了大量的工作。SPH方法中的固体边界的处理
+                可以大致分为两类；一类是布置一层粒子作为固体壁面边界，并引入排斥力以防止流体粒子的穿透。
+                另一类是设置多层粒子作为固体壁面边界以保证紧支域的完整性。本文采用了Adami et al. (2012)提出的固体壁面边界
+                条件，大量工作证明了其精确性和鲁棒性。在这种边界条件下，放置了多层虚拟粒子，确保对于流体粒子的紧支域内
+                有足够的粒子进行粒子近似。此外，虚拟粒子被视为流体粒子，参与其他粒子的信息更新(如密度，速度等)。对于
+                虚拟粒子(Adami et al.,2012)，压力由紧支域内的流体粒子插值得到，如下：
+
+%formula 9
+
+\paragraph{\quad}in which the subscript d represents the dummy particle, 
+                and f denotes the fluid particle. $\mathbf{a}_d$ is the acceleration 
+                of dummy particles. Based on the pressure of the dummy 
+                particle, its density (Adami et al., 2012) can be obtained 
+                according to the equation of state as
+\paragraph{\quad}式中下标d表示虚拟粒子，f表示流体粒子。$\mathbf{a}_d$是虚拟粒子的加速度。基于
+                虚拟粒子的压力，可以通过下式形式的状态方程得到其密度：
+
+%formula 10
+
+\paragraph{\quad}For the fixed wall boundary particles, their velocity and 
+                acceleration are zero, while for the moving rigid body 
+                particles in this work, the velocity and acceleration 
+                of these particles can be updated by the following 
+                equations (Sun et al., 2018), in which the subscript $ w$ 
+                refers to the moving rigid body particle.
+\paragraph{\quad}对于固定壁面边界粒子，其速度和加速度为零，然而本文中的运动刚体粒子的速度和加速度
+            可使用下面的方程(Sun et al.,2018)更新，式中下标$w$表示运动缸体粒子。
+
+%formula 11
+
+\paragraph{\quad}in which $\mathbf{r}_{w0}$ and $\mathbf{u}_{w0}$ can be calculated by
+             $\mathbf{r}_{w0} = \mathbf{r}_w-\mathbf{r}_0 $and $\mathbf{u}_{w0} = \mathbf{u}_w-\mathbf{U}_0$, 
+                respectively. $\mathbf{U}_0$ and $\mathbf{\Omega}_0$represent the translational and rotational 
+                velocities of the mass center of the rigid body, respectively, and 
+                their values (Sun et al., 2018) are obtained by
+\paragraph{\quad}式中 $\mathbf{r}_{w0}$ and $\mathbf{u}_{w0}$可以分别通过
+                    $\mathbf{r}_{w0} = \mathbf{r}_w-\mathbf{r}_0 $and $\mathbf{u}_{w0} = \mathbf{u}_w-\mathbf{U}_0$计算，
+                    $\mathbf{U}_0$和$\mathbf{\Omega}_0$分别代表质心的平移和转动，它们的值(Sun et al.,2018)可以通过下式
+                    计算得到
+
+%formula 12
+
+\paragraph{\quad}in which $\mathbf{M}$ and $\mathbf{I}$ denote the mass and the moment of 
+                inertia of the moving rigid body, 
+                respectively. $F_{fw}$ and $T_{fw}$ (Sun et al., 2018) can be calculated as follows:
+\paragraph{\quad}式中$\mathbf{M}$和$\mathbf{I}$分别代表运动刚体的质量和动量。$F_{fw}$ 和 $T_{fw}$(Sun et al.,2018)
+                可以通过下式计算：
+
+%formula 13
+
+\paragraph{\quad}where $p_{fw}$ is computed by$ p_{fw} = \frac{\rho_w p_f +\rho_f p_w}{ \rho_f +\rho_w}$ , 
+                and $matbf{r}_c$ is the centroid position of the rigid body.
+\paragraph{\quad}式中$p_{fw}$通过 $ p_{fw} = \frac{\rho_w p_f +\rho_f p_w}{ \rho_f +\rho_w}$ 计算，
+                $\mathbf{r}_c$是刚体的质心。
+
+\subsection{Particle shifting technique(PST)-粒子转移技术}
+\paragraph{\quad}For the SPH method, maintaining the regularity 
+                of particle distribution is helpful to improving 
+                the accuracy of the numerical results. Therefore, 
+                many papers focus on maintaining even particle 
+                distributions in simulations 
+                (see e.g. Lind et al., 2012; Xu et al., 2009; Khayyer et al., 2017, 2019; Sun et al., 2017; Wang et al., 2019c). 
+                To ensure that particle shifting will be conducted in 
+                a physically-consistent manner (i.e., no unphysical shifting at the interface), 
+                multiphase shifting schemes need to be considered. 
+                To our best knowledge, Mokos et al. (2017) was the first 
+                to extend PST to multiphase SPH method, and recently Khayyer 
+                et al. (2019) has further developed PST into the projection-based 
+                particle method. Considering the applied WCSPH method, 
+                the particle shifting formulation in Mokos et al. (2017) 
+                is adopted and then combined with the multiphase interface 
+                treatment of Khayyer et al. (2019) in the present simulation. 
+                To be specific, the shifting displacement vector of particle 
+                based on the magnitude of particle velocity (Mokos et al., 2017) 
+                can be described as:
+\paragraph{\quad}对于SPH方法，保持粒子分布的均匀性有利于提高数值结果的精度。
+                因此很多文献专注于在模拟中保持均匀的粒子分布(见如Lind et al.,2012;Xu et al.,2009;Khayyer et al.,2017,
+                2019;Sun et al.,2017;Wang et al.,2019c)。为了保证粒子转移以符合物理规律地方式进行，需要考虑
+                多相转移方法。据我们所知，Mokos et al. (2017)首次将PST扩展到多相SPH方法中，而Khayyer et al. (2019)最近
+                进一步将PST改进到基于投影的粒子方法中。鉴于采用了WCSPH方法，本文中的模拟采用了Mokos et al.(2017)中的粒子
+                位移公式，并结合Khayyer et al.(2019)的多相界面处理手段。具体而言，粒子基于粒子速度大小的位移向量(Mokos et al.,2017)可以
+                由下式描述：
+
+%formula 14
+
+\paragraph{\quad}in which the parameter$ A_s$ is set to 2 (Skillen et al., 2013). 
+                $|\mathbf{u}|_{max} $denotes the maximum particle velocity and $\Delta t$ represents 
+                the time step. Besides, the treatment of the multiphase particle 
+                shifting technique developed by Khayyer et al. (2019) is applied, 
+                which mainly consists of two steps. Firstly, the particles of 
+                heavy phase are shifted by neglecting the particles of light phase, 
+                which indicates that the water-gas interface can be regarded as the 
+                free surface. The shifting of the heavy phase particles (Khayyer et al., 2019) 
+                is as follows
+\paragrap{\quad}式中参数$A_s$设为2.$|\mathbf{u}|_{max}$表示最大的粒子速度$\Delta t$表示时间步。
+                此外，采用了Khayyer et al.(2019)发展的多相粒子转移技术，其主要包含两个步骤。
+                首先忽略轻相粒子，重相粒子移动，这表明气液界面可被视为自由表面。重相粒子的移动
+                描述如下
+
+%formula 15
+
+\paragraph{\quad}in which $\mathbf{I}$ is the identity tensor and$\tilde{n}_a$ is the modified normal 
+                unit vector of the surface (Khayyer et al., 2019), which is computed by
+\paragraph{\quad}式中$\mathbf{I}$是身份张量，$\tilde{n}_a$是修正法向单位向量(Khayyer et al.,2019)，
+                其可由下式计算
+            
+%formula 16
+
+\paragraph{\quad}$A_1$ denotes the splashing particles, $A_2$ represents the free surface particles 
+                but excluding splashing particles, and $A_3$ refers to the interior heavy phase 
+                particles. For the assessment of the particle type, the optimized free surface 
+                detection method introduced by Wang et al. (2019c) is adopted, in which the free 
+                surface particles are roughly detected according to the divergence of the position 
+                vector (Lee et al., 2008), and then through scanning the “umbrella-shaped” area 
+                introduced in Marrone et al. (2010), the free surface particles are further distinguished.
+\paragraph{\quad}$A_1$表示溅起的粒子，$A_2$表示不包含溅起的粒子的自由表面粒子，$A_3$表示内部重相粒子。对于粒子类型的
+                判断，本文采用了Wang et al. (2019c)提出的优化自由表面搜索法，其通过位置矢量的散度(Lee et al.,2008)对自由表面的粒子进行
+                大致搜索，随后Marrone et al. (2010)提出的通过伞状区域进行扫描对自由表面粒子进一步区分。
+
+\paragrap{\quad}After conducting the shifting of the heavy phase particles, the particles 
+                of light phase are shifted, and at this time the regularized particles of 
+                heavy phase need to be considered. The shifting of light particles can be calculated by
+\paragraph{\quad}在重相粒子移动完成后，轻相粒子移动，并且此时需要考虑重相正则化的粒子。轻相粒子的移动可以通过下式计算
+
+%formula 17
+
+\paragraph{\quad}It can be observed that different from the shifting of water particles, the air particles 
+                    can be shifted freely in all directions, which aims to eliminate the voids appearing 
+                    in air during simulations.
+\paragraph{\quad}可以观察到，与水颗粒的移动不同，空气颗粒可以在各个方向自由移动，其目的是消除模拟过程中空气中出现的空隙。
+\end{document}
