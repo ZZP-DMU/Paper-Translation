@@ -1,0 +1,98 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{subfiles}
+\usepackage{amsmath}
+\usepackage[margin=1in]{geometry}
+\begin{document}
+\section{Numerical result and discussion-数值结果和讨论}
+\paragraph{\quad}In this section, firstly, the accuracy and convergence 
+            of the adopted multiphase Riemann-SPH method are validated 
+            through the test of the slamming of a flat plate. Then, 
+            the influences of the air cushion and the plate length on the 
+            slamming load are discussed. Finally, focusing on the air-cushion 
+            effect in the water entry, a complex engineering problem, i. e., 
+            the slamming of the LNG tank insulation panel is simulated, and the 
+            influences of the impact velocity and deadrise angle on slamming load 
+            characteristics are analyzed.
+\paragraph{\quad}本节通过平板砰击实验验证了采用的黎曼-SPH方法的精确性和收敛性。随后，讨论了
+                气垫效应和板长对砰击载荷的影响。最后，重点研究了入水过程中的气垫效应，
+                模拟了一个复杂的工程问题，即LNG船保温板的砰击，并分析了砰击速度和静升角
+                对砰击载荷特性的影响。
+
+\subsection{slamming of flat plate-平板砰击}
+\subsubsection{Validation-验证}
+\paragraph{\quad}This subsection aims to verify the accuracy and convergence 
+                of the adopted SPH method by the test of water slamming of 
+                flat plate which is carried out by Ma et al. (2016). The sketch 
+                of the numerical model is shown in Fig. 1, in which$ M$,$ l $and $U_{impact}$ 
+                stand for the mass, the length and the impact velocity of the plate, 
+                respectively.$ H $and$ W $denote the depth and width of water domain, 
+                respectively. In the experiment, the plate has the length of$ l = 0.25 m$ 
+                and the mass of $M = 32 kg$. This plate is released at rest initially and 
+                falls freely, and it impacts the water at the velocity of $5.5 m/s$. In our 
+                simulation, the width and depth of the water domain are set to $W = 1.2 m$ 
+                and $H = 0.4 m$, respectively. In addition, the reference density of water 
+                and air is set to $1000kg/m^3$ and$1kg/m^3$, respectively, and the particle 
+                spacing $\Delta x$ is set to 0.002 m. In literature (Ma et al., 2016), the moment 
+                when the plate impacts the water is defined as the origin of the time coordinate. 
+                For easy to compare, the time coordinate of the numerical results is translated 
+                to make it consistent with that of the literature (Ma et al., 2016).
+\paragraph{\quad}这一小节旨在通过由Ma et al.(2016)提出的平板砰击实验验证所采用的SPH方法的精确性和收敛性。
+                数值方法的示意图如Fig.1所示，其中$M$,$l$,$U_{impact}$分别表示板的质量，长度和砰击速度。
+                $H$和$W$分别表示水域的深度和长度。在实验中，板长$ l = 0.25 m$，板的质量为 $M = 32 kg$.
+                板由静止释放并自由下落，最后以$5.5m/s$的速度与水砰击。在本文的数值模拟中，水域的宽度和深度
+                分别设置为$W=1.2m$和$H=0.4m$.此外，水和空气的参考密度分别设置为$1000kg/m^3$和$1kg/m^3$,
+                粒子的间距$\Delta x$设置为$0.002m$.在文献(Ma et al.,2016)，平板刚与水砰击的时刻定义为
+                时间坐标的原点。为了便于对比，对本文数值结果的时间坐标平移，使之与文献(Ma et al.,2016)一致。
+
+\paragraph{\quad}From the velocity field shown in Fig. 2, it can be observed that clear 
+                circulating air jet surrounding the plate is generated during the falling process. 
+                This is because the air under the plate is compressed during the falling of the 
+                plate, causing the pressure of the air under the plate to increase and the pressure 
+                of the air above the plate to decrease. As a result, the air flows around the edges 
+                of the plate, which in turn forms a circulating air vortex as displayed in Fig. 2. 
+                When the plate is about to contact with the water, the velocity of the air escaping 
+                from both sides is very large even over $100 m/s$, although the impact velocity of the 
+                plate is only$ 5.5 m/s $in this case. Similar situation can be found in the research of 
+                Lind et al. (2015) in which it is believed that the high-speed subsonic flow is readily 
+                formed for the air in the water slamming of plate even in a moderate impact event. 
+                During the impact of plate, a part of air is trapped under the plate and forms the air 
+                cushion for the slam plate, as shown in Fig. 3. At the same time, the pressure distribution 
+                of the slam plate is displayed. Aiming at the numerical prediction of the slamming load 
+                of the plate, the time histories of the pressure of the plate center and the slamming force 
+                of the whole plate are given in Fig. 4 and Fig. 5, respectively. It can be found that 
+                generally, the time history of the pressure at the center of plate obtained by adopted 
+                the present SPH method agrees well with the FVM result provided by Ma et al. (2016) but a 
+                little lower than the experimental data in (Ma et al., 2016). For the slamming force of 
+                the whole plate, the present result obtains a higher peak compared with the SPH result of 
+                Yang et al. (2020), and the result obtained by present SPH method shows good agreement 
+                with the results of experiment and FVM method in Ma et al. (2016). In general, for the 
+                present test of the water slamming of flat plate involving air-cushion effect, the present 
+                method has good accuracy in predicting the slamming load of structure.
+\paragraph{\quad}从速度场如Fig. 2，可以明显看出在下落过程中板周围产生了环状空气射流。这是因为板下空气在下落过程中被压缩，导致板下
+            空气压力升高而板上空气压力下降。因此，空气绕过平板边缘流动，进而形成如Fig. 2所示的环状空气漩涡。尽管此时板的砰击速度只有$5.5m/s$
+            当平板即将接触水面
+            时，从板端逸出的空气速度非常大,甚至超过$100m/s$.类似的情况可以在Lind et al. (2015)的研究中发现，他认为对于空气而言在板与水的砰击过程中，
+            即使在缓和的砰击情况下高速亚音速流也会快速形成。在板的砰击过程中，一部分空气困在板下并为砰击板形成缓冲，如Fig. 3所示。
+            同时压力分布也如图所示。针对板的砰击载荷的预测，板中心压力的时间历程和整个板的砰击力分别由Fig. 4和Fig. 5给出。
+            结果表明，由本文采用的SPH方法获得的板中心压力时间历程和由Ma et al. (2016)获得的FVM结果吻合的很好，但略低于
+            (Ma et al.,2016)的实验数据。至于整个板的砰击力，本文的结果比Yang et al. (2020)的SPH结果的峰值更高，但
+            本文SPH方法获得的结果和实验结果以及Ma et al.(2016)有很好的一致性。总而言之，对于包含气垫效应的平板和水的砰击实验，
+            当前本文的方法表现出良好的结构物砰击载荷的预测精度。
+
+\paragraph{\quad}Furthermore, also through this numerical test, the convergence property of the 
+                adopted SPH model is checked. Here, the simulations with the particle resolutions 
+                of Δx = 0.003m and Δx = 0.0015m are performed, respectively. Combined with the 
+                numerical results with Δx = 0.002m, the time histories of the pressure at the plate 
+                center and the slamming force of whole plate with three different particle resolutions 
+                are displayed in Fig. 6. It can be found that similar results of the pressure at the 
+                plate center and the slamming load of plate are obtained with the particle resolution 
+                increasing from Δx = 0.002m to Δx = 0.0015m, which indicates that the adopted SPH 
+                scheme has a good convergence.
+\paragraph{\quad}此外，此次数值试验验证了采用的SPH方法的收敛性质。这里分别进行了粒子分辨率为$\Delta x = 0.003m$
+                和$\Delta x = 0.0015m$的模拟。结合$\Delta x = 0.002 m$的数值结果，不同粒子分辨率的板中心压力
+                的时间历程和整个板的砰击压力如Fig. 6所示。可以发现粒子分辨率从$\Delta x = 0.002m$ 增加的$\Delta x = 0.0015m$
+                时，板中心压力的时间历程和整个板的砰击力有类似的数值结果，这表明本文采用的SPH方法有良好的收敛性。
+
+\end{document}
