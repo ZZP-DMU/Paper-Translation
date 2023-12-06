@@ -16,6 +16,10 @@
                 SPH方法中的离散控制方程(Sun et al.,2018)通常写作如下形式
 
 %formula 1
+\begin{equation}
+   \left\{ \frac{D \rho_a}{Dt}=-\rho_a\sum_{b}(\mathbf{u}_b - \mathbf{u}_a)\nabla_a W_{ab}V_b ,\\
+   \frac{D \mathbf{u}_a}{Dt}=\mathbf{g}-\sum_{b}(\frac{p_a+p_b}{\rho_a})\nabla_a W_{ab} V_b \right. \qquad(1)
+\end{equation}
 
 \paragraph{\quad}in which the subscript a denotes the a-th particle, and subscript
                  b represents the particles in the support region of particle a. 
@@ -40,6 +44,10 @@
                 种状态的变量可以写成以下形式
 
 %formula 2
+\begin{equation}
+   \left\{ S1:(\rho_L,u_L,p_L)=(\rho_b,\mathbf{u}_b\cdot\hat{\mathbf{r}}_{ab},p_b), \\
+   S2:(\rho_R,u_R,p_R)=(\rho_a,\mathbf{u}_a\cdot\hat{\mathbf{r}}_{ab},p_a) \right. \qquad(2)
+\end{equation}
 
 \paragraph{\quad}in which the subscripts L and R refer to the states of left and right, 
                 respectively. These two states represent expansion or shock waves, and 
@@ -55,6 +63,10 @@
                 近似条件，控制方程的离散形式可以写出以下形式
 
 % formula 3
+\begin{equation}
+   \left\{ \frac{D \rho_a}{Dt}=-2\rho_a \sum_{b}(\mathbf{u}^*-\mathbf{u}_a)\nabla_a W_{ab} V_b, \\
+   \frac{D \mathbf{u}_a}{Dt}=\mathbf{g}-2\sum_{b}(\frac{p^*}{p_a})\nabla_a W_{ab} V_b \right. \qquad (3)
+\end{equation}
 
 \paragraph{\quad}in which $\mathbf{u}^*$ is computed by $\mathbf{u}^* = \mathbf{u}^*\hat{r}_{ab} + [ \frac{\mathbf{u}_a +\mathbf{u}_b}{2}-\frac{(u_L+u_R)\hat{r}_{ab}{2} ] $, 
                 and the unit vecto $\mathbf{r}_{ab}$ is defined as  $\matbf{r}_{ab} = \frac{\mathbf{r}_a-\mathbf{r}_b}{|\mathbf{r}_a-\mathbf{r}_b|}$. $p^*$and $u^*$ 
@@ -72,6 +84,10 @@
                 对于采用的PVRS近似黎曼求解器， $u^*$ 和 $p^*$(Toro,2013)采用下式求解
                 
 %formula 4
+\begin{equation}
+   \left\{ u^*=\frac{1}{Z_L+Z_R}[Z_L u_L + Z_R u_R +(p_L - p_R)], \\
+   p^* = \frac{1}{Z_L + Z_R}[Z_R p_L + Z_L p_R + Z_L Z_R(u_L -u_R)] \right. \qquad (4)
+\end{equation}
 
 \paragraph{\quad}in which $(\rho_L, \mathbf{u}_L, p_L, c_L) = (\rho_b, \mathbf{u}_b \cdot \hat{x}_{ab}, p_b, c_b)$ and 
                 $(\rho_R, \mathbf{u}_R, p_R, c_R) = (\rho_a, \mathbf{u}_a \cdot \hat{x}_{ab}, p_a, c_a)$, and $Z_L$ and
@@ -90,6 +106,9 @@
                 的限制器进行了推导，其中$p^*$由下式得到
     
 %formula 5
+\begin{equation}
+   p^*=\frac{1}{Z_L+Z_R}[Z_R p_L+Z_L p_R + \phi Z_L Z_R(u_L - u_R)], \qquad (5)
+\end{equation}
 
 \paragraph{\quad}in which the value of $\phi$ is determined by $\phi = min{λmax[\tilde{ρ}(u_L-u_R), 0], c_{RL}/D}$, 
                  where $\tilde{\rho}$ is computed by $\tilde{ρ} = \frac{2 \rho_L \rho_R}{\rho_L + \rho_R} $and $c_{RL}$is defined as
@@ -118,6 +137,9 @@
 \paragraph{\quad}为使控制方程封闭，需要在SPH方法中加入状态方程。本文采用了下式形式的Tait状态方程
 
 %formula 6
+\begin{equation}
+   p=\frac{c_0^2 \rho_0}{\gamma}((\rho / \rho_0)^\gamma-1) \qquad (6)
+\end{equation}
 
 \paragraph{\quad}in which $\rho_0$ refers to the reference density and $c_0$ denotes the 
                 artificial sound speed. $\gamma$ is the characteristic exponent which is 
@@ -133,6 +155,9 @@
 \paragraph{\quad}考虑到使用了弱可压SPH方法，为保证流体密度变化在0.01内，由下式确定水声速(Hammani et al., 2020)
 
 %formula 7
+\begin{equation}
+   c_0 \ge 10 max(|\mathbf{u_{max}}|,\sqrt{\frac{\Delta p_{max}}{\rho_0}}) \qquad (7)
+\end{equation}
 
 \paragraph{\quad}in which for this problem of water entry, instead of the 
                 impact velocity, the estimated maximum velocity in the 
@@ -170,6 +195,9 @@
 \paragraph{\quad}本文中，时间步由下面的CFL条件确定，式中$c_{max}$表示流体最大声速。
 
 %formula 8
+\begin{equation}
+   \Delta t = \frac{0.25h}{c_{max}+|\mathbf{u}_{max}} \qquad (8)
+\end{equation}
 
 
 \subsection{Treatment of fluid-structure interface-流固界面的处理}
@@ -203,6 +231,9 @@
                 虚拟粒子(Adami et al.,2012)，压力由紧支域内的流体粒子插值得到，如下：
 
 %formula 9
+\begin{equation}
+   p_d = \frac{\sum_{f}p_f W_{df} + \sum_{f}\rho_f(\mathbf{r}_f-\mathbf{r}_d)(\mathbf{a}_d-\mathbf{g})W_{df}}{\sum_{f}W_{df}}, \qquad (9)
+\end{equation}
 
 \paragraph{\quad}in which the subscript d represents the dummy particle, 
                 and f denotes the fluid particle. $\mathbf{a}_d$ is the acceleration 
@@ -214,6 +245,10 @@
 
 %formula 10
 
+\begin{equation}
+   \rho_d = \rho_0(\frac{p_b \gamma}{c_0^2\rho_0}+1)^{\frac{1}{\gamma}} \qquad (10)
+\end{equation}
+
 \paragraph{\quad}For the fixed wall boundary particles, their velocity and 
                 acceleration are zero, while for the moving rigid body 
                 particles in this work, the velocity and acceleration 
@@ -224,6 +259,10 @@
             可使用下面的方程(Sun et al.,2018)更新，式中下标$w$表示运动缸体粒子。
 
 %formula 11
+\begin{equation}
+   \left\{ \mathbf{u}_w =  \mathbf{U}_0 + \mathbf{\Omega}_0 \times \mathbf{r}_{w0}, \\
+   \mathbf{a}_w = \frac{D \mathbf{U}_0}{Dt}+\frac{D \mathbf{\Omega}_0}{Dt}\times\mathbf{r}_{w0}+\mathbf{\Omega}_0\times\mathbf{u}_{w0} \right. \qquad (11)
+\end{equation}
 
 \paragraph{\quad}in which $\mathbf{r}_{w0}$ and $\mathbf{u}_{w0}$ can be calculated by
              $\mathbf{r}_{w0} = \mathbf{r}_w-\mathbf{r}_0 $and $\mathbf{u}_{w0} = \mathbf{u}_w-\mathbf{U}_0$, 
@@ -236,6 +275,10 @@
                     计算得到
 
 %formula 12
+\begin{equation}
+   \left\{ \frac{D \mathbf{U}_0}{Dt}=\frac{F_{fw}}{M}+\mathbf{g}, \\
+   \frac{D \mathbf{\Omega}_0}{Dt} = \frac{\mathbf{T}_{fw}}{I} \right. \qquad (12)
+\end{equation}
 
 \paragraph{\quad}in which $\mathbf{M}$ and $\mathbf{I}$ denote the mass and the moment of 
                 inertia of the moving rigid body, 
@@ -244,6 +287,10 @@
                 可以通过下式计算：
 
 %formula 13
+\begin{equation}
+   \left\{ \mathbf{F}_{fw} = \sum_{f}\sum_{w}(\frac{\mathbf{r}_f+\mathbf{r}_w}{2}-\mathbf{r}_c)\times p_{fw}(V_f^2+V_w^2)\Delta_f W_{fw}, \\
+   p_{fw}=\frac{\rho_w p_f+\rho_f p_2}{\rho_f+\rho_w} \right. \qquad (13)
+\end{equation}
 
 \paragraph{\quad}where $p_{fw}$ is computed by$ p_{fw} = \frac{\rho_w p_f +\rho_f p_w}{ \rho_f +\rho_w}$ , 
                 and $matbf{r}_c$ is the centroid position of the rigid body.
@@ -279,6 +326,9 @@
                 由下式描述：
 
 %formula 14
+\begin{equation}
+   \delta \mathbf{r}^{'}_a = -A_s h |\mathbf{u}|_{max} \Delta t \nabla C_a;\nabla C_a = \sum_{b}\nabla_a W_{ab} V_b , \qquad (14)
+   \end{equation}
 
 \paragraph{\quad}in which the parameter$ A_s$ is set to 2 (Skillen et al., 2013). 
                 $|\mathbf{u}|_{max} $denotes the maximum particle velocity and $\Delta t$ represents 
@@ -295,6 +345,11 @@
                 描述如下
 
 %formula 15
+\begin{equation}
+   \delta \mathbf{r}_a = \left\{ 0, \quad if \quad a \in A_1, \\
+   (I_\tilde{n}_a\otimes\tilde{n}_a)\delta \mathbf{r}_a \quad if \quad a \in A_2, \\
+   \delta \mathbf{r}_a^{'} \quad if \quad a \in A_3 \right. (15)
+\end{equation}
 
 \paragraph{\quad}in which $\mathbf{I}$ is the identity tensor and$\tilde{n}_a$ is the modified normal 
                 unit vector of the surface (Khayyer et al., 2019), which is computed by
@@ -302,6 +357,9 @@
                 其可由下式计算
             
 %formula 16
+\begin{equation}
+   \tilde{n}_a = -\frac{B_a\cdot \Delta C_a }{|B_a \cdot \Delta C_a |};B_a = (\sum_{b}\mathbf{r}_{ab}\otimes\Delta_{a}W_{ab}V_b)^{-1}, \qquad (16)
+\end{equation}
 
 \paragraph{\quad}$A_1$ denotes the splashing particles, $A_2$ represents the free surface particles 
                 but excluding splashing particles, and $A_3$ refers to the interior heavy phase 
@@ -320,6 +378,10 @@
 \paragraph{\quad}在重相粒子移动完成后，轻相粒子移动，并且此时需要考虑重相正则化的粒子。轻相粒子的移动可以通过下式计算
 
 %formula 17
+
+\begin{equation}
+   \delta \mathbf{r}_a = \delta \mathbf{r}_a^{'}  \qquad (17)
+\end{equation}
 
 \paragraph{\quad}It can be observed that different from the shifting of water particles, the air particles 
                     can be shifted freely in all directions, which aims to eliminate the voids appearing 

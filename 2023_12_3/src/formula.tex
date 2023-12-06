@@ -1,0 +1,93 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{subfiles}
+\usepackage{amsmath}
+\usepackage[margin=1in]{geometry}
+\begin{document}
+\begin{equation}
+    \left\{ \frac{D \rho_a}{Dt}=-\rho_a\sum_{b}(\mathbf{u}_b - \mathbf{u}_a)\nabla_a W_{ab}V_b ,\\
+    \frac{D \mathbf{u}_a}{Dt}=\mathbf{g}-\sum_{b}(\frac{p_a+p_b}{\rho_a})\nabla_a W_{ab} V_b \right. \qquad(1)
+\end{equation}
+其中$W_{ab}=W(|\mathbf{r}_a-\mathbf{r}_b|,h)$
+
+\begin{equation}
+    \left\{ S1:(\rho_L,u_L,p_L)=(\rho_b,\mathbf{u}_b\cdot\hat{\mathbf{r}}_{ab},p_b), \\
+    S2:(\rho_R,u_R,p_R)=(\rho_a,\mathbf{u}_a\cdot\hat{\mathbf{r}}_{ab},p_a) \right. \qquad(2)
+\end{equation}
+
+\begin{equation}
+    \left\{ \frac{D \rho_a}{Dt}=-2\rho_a \sum_{b}(\mathbf{u}^*-\mathbf{u}_a)\nabla_a W_{ab} V_b, \\
+    \frac{D \mathbf{u}_a}{Dt}=\mathbf{g}-2\sum_{b}(\frac{p^*}{p_a})\nabla_a W_{ab} V_b \right. \qquad (3)
+\end{equation}
+其中$\mathbf{u}^*_L=\mathbf{u}^*_R=\mathbf{u}^*,p^*_L=p^*_R=p^*,\mathbf{u}_a+\mathbf{u}_b \approx 2\mathbf{u}^*,p_a+p_b\approx2P^*,$
+$\mathbf{u}^*=u^*\hat{\mathbf{r}}_{ab}+[\frac{\mathbf{u}_a+\mathbf{u}_b}{2}-\frac{(u_L+u_R)\hat{\mathbf{r}}_{ab}}{2}]$,
+$\hat{\mathbf{r}}_{ab}=\frac{\mathbf{r}_a-\mathbf{r}_b}{|\mathbf{r}_a-\mathbf{r}_b|}$
+
+\begin{equation}
+    \left\{ u^*=\frac{1}{Z_L+Z_R}[Z_L u_L + Z_R u_R +(p_L - p_R)], \\
+    p^* = \frac{1}{Z_L + Z_R}[Z_R p_L + Z_L p_R + Z_L Z_R(u_L -u_R)] \right. \qquad (4)
+\end{equation}
+其中$Z_L=\rho_b p_b$,$Z_R=\rho_a p_a$,$(\rho_L ,u_L ,p_L ,c_L)=(\rho_b ,\mathbf{u}_b\cdot\hat{\mathbf{x}}_{ab},p_b,c_b)$
+,$(\rho_R,u_R,p_R,c_R)=(\rho_a,\mathbf{u}_a\cdot\hat{\mathbf{x}}_{ab},p_a,c_a)$
+
+\begin{equation}
+    p^*=\frac{1}{Z_L+Z_R}[Z_R p_L+Z_L p_R + \phi Z_L Z_R(u_L - u_R)], \qquad (5)
+\end{equation}
+其中$\phi = min{\lambda max[\tilde{\rho}(u_L - u_R),0],c_{RL}/D}$,$\tilde{\rho}=\frac{2\rho_L\rho_R}{\rho_L+\rho_R}$,
+$c_{RL}=\frac{c_R\rho_R \sqrt{\rho_R}+c_L\rho_L \sqrt{\rho_L}}{\sqrt{\rho_R}+\sqrt{\rho_L}}$,$\lambda=\frac{\alpha h (c_a+c_b)}{2D(u_L-u_R)|\mathbf{x}_a-\mathbf{x}_b|}$,
+$D=\frac{2Z_L Z_R}{Z_L + Z_R}$,$\alpha=0.03$
+
+\begin{equation}
+    p=\frac{c_0^2 \rho_0}{\gamma}((\rho / \rho_0)^\gamma-1) \qquad (6)
+\end{equation}
+
+\begin{equation}
+    c_0 \ge 10 max(|\mathbf{u_{max}}|,\sqrt{\frac{\Delta p_{max}}{\rho_0}}) \qquad (7)
+\end{equation}
+
+\begin{equation}
+    \Delta t = \frac{0.25h}{c_{max}+|\mathbf{u}_{max}} \qquad (8)
+\end{equation}
+
+\begin{equation}
+    p_d = \frac{\sum_{f}p_f W_{df} + \sum_{f}\rho_f(\mathbf{r}_f-\mathbf{r}_d)(\mathbf{a}_d-\mathbf{g})W_{df}}{\sum_{f}W_{df}}, \qquad (9)
+\end{equation}
+
+\begin{equation}
+    \rho_d = \rho_0(\frac{p_b \gamma}{c_0^2\rho_0}+1)^{\frac{1}{\gamma}} \qquad (10)
+\end{equation}
+
+\begin{equation}
+    \left\{ \mathbf{u}_w =  \mathbf{U}_0 + \mathbf{\Omega}_0 \times \mathbf{r}_{w0}, \\
+    \mathbf{a}_w = \frac{D \mathbf{U}_0}{Dt}+\frac{D \mathbf{\Omega}_0}{Dt}\times\mathbf{r}_{w0}+\mathbf{\Omega}_0\times\mathbf{u}_{w0} \right. \qquad (11)
+\end{equation}
+
+\begin{equation}
+    \left\{ \frac{D \mathbf{U}_0}{Dt}=\frac{F_{fw}}{M}+\mathbf{g}, \\
+    \frac{D \mathbf{\Omega}_0}{Dt} = \frac{\mathbf{T}_{fw}}{I} \right. \qquad (12)
+\end{equation}
+
+\begin{equation}
+    \left\{ \mathbf{F}_{fw} = \sum_{f}\sum_{w}(\frac{\mathbf{r}_f+\mathbf{r}_w}{2}-\mathbf{r}_c)\times p_{fw}(V_f^2+V_w^2)\Delta_f W_{fw}, \\
+    p_{fw}=\frac{\rho_w p_f+\rho_f p_2}{\rho_f+\rho_w} \right. \qquad (13)
+\end{equation}
+
+\begin{equation}
+\delta \mathbf{r}^{'}_a = -A_s h |\mathbf{u}|_{max} \Delta t \nabla C_a;\nabla C_a = \sum_{b}\nabla_a W_{ab} V_b , \qquad (14)
+\end{equation}
+
+\begin{equation}
+    \delta \mathbf{r}_a = \left\{ 0, \quad if \quad a \in A_1, \\
+    (I_\tilde{n}_a\otimes\tilde{n}_a)\delta \mathbf{r}_a \quad if \quad a \in A_2, \\
+    \delta \mathbf{r}_a^{'} \quad if \quad a \in A_3 \right. (15)
+\end{equation}
+
+\begin{equation}
+    \tilde{n}_a = -\frac{B_a\cdot \Delta C_a }{|B_a \cdot \Delta C_a |};B_a = (\sum_{b}\mathbf{r}_{ab}\otimes\Delta_{a}W_{ab}V_b)^{-1}, \qquad (16)
+\end{equation}
+
+\begin{equation}
+    \delta \mathbf{r}_a = \delta \mathbf{r}_a^{'}  \qquad (17)
+\end{equation}
+\end{document}
