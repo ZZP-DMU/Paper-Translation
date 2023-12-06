@@ -17,7 +17,7 @@
             characteristics are analyzed.
 \paragraph{\quad}本节通过平板砰击实验验证了采用的黎曼-SPH方法的精确性和收敛性。随后，讨论了
                 气垫效应和板长对砰击载荷的影响。最后，重点研究了入水过程中的气垫效应，
-                模拟了一个复杂的工程问题，即LNG船保温板的砰击，并分析了砰击速度和静升角
+                模拟了一个复杂的工程问题，即LNG船绝缘板的砰击，并分析了砰击速度和静升角
                 对砰击载荷特性的影响。
 
 \subsection{slamming of flat plate-平板砰击}
@@ -154,7 +154,7 @@
                 表示。因为更宽的板下的缓冲效应更明显，有无空气的砰击力峰值的差异变得更大，如Table 1所示。在板长$l = 0.5m$的情况下，
                 得益于空气的存在，砰击力的大小减小了45.8\%。
 
-\subsection{Slamming of LNG tank insulation panel-LNG船保温板砰击}
+\subsection{Slamming of LNG tank insulation panel-LNG船绝缘板砰击}
 \subsubsection{Simulation of slamming process}
 \paragraph{\quad}In this subsection, focusing on the air-cushion effect in the water entry, 
                 a complex practical problem studied in Marrone et al. (2017), i.e., the slamming 
@@ -166,9 +166,9 @@
                 and the insulation panel impacts on the water with a vertical velocity of $5.5 m/s$. 
                 The particle resolution is set to $\Delta x = 0.002m$, and the whole computational domain 
                 is discretized into 312992 particles.
-\paragraph{\quad}在本小节中，模拟了Marrone et al. (2017)研究的一个复杂的工程问题，即LNG船保温板的砰击，重点研究了
-                入水过程中的气垫效应，并在附录A中提供相应的精度测试。对于本文的LNG船保温板的模拟，计算模型与Marrone et al. (2017)
-                类似，包括水域和保温板，如Fig. 10所示。本文的模拟中，保温板的质量时$69.7Kg$,保温板的与水砰击的速度是
+\paragraph{\quad}在本小节中，模拟了Marrone et al. (2017)研究的一个复杂的工程问题，即LNG船绝缘板的砰击，重点研究了
+                入水过程中的气垫效应，并在附录A中提供相应的精度测试。对于本文的LNG船绝缘板的模拟，计算模型与Marrone et al. (2017)
+                类似，包括水域和绝缘板，如Fig. 10所示。本文的模拟中，绝缘板的质量时$69.7Kg$,绝缘板的与水砰击的速度是
                 $5.5m/s$。粒子分辨率设置为$\Delta x = 0.002m$,整个计算域离散为312992个粒子。
 
 \paragraph{\quad}Fig. 11 shows the particle distributions and corresponding pressure 
@@ -219,7 +219,7 @@
                 并且由于气垫的缓冲效应，砰击载荷大幅降低。对于P5，由于气垫的消失，其压力再次出现震荡。此外，由于板的速度的下降，
                 P5的峰值也小于P1.
 
-\subsubsection{Influence of the impact velocity on slamming of LNG tank insulation panel-砰击速度对于LNG船保温板砰击的影响}
+\subsubsection{Influence of the impact velocity on slamming of LNG tank insulation panel-砰击速度对于LNG船绝缘板砰击的影响}
 \paragraph{\quad}To investigate the effect of impact velocity on slamming pressure of LNG tank insulation panel, the 
                 simulations are conducted by adjusting the initial impact velocity to $\mathbf{U}_{impact} = 2.5m/s$ and 
                 $U_{impact} = 4m/s$, respectively, and other conditions are same as those in subsection 3.2.1. 
@@ -240,14 +240,14 @@
                 pressure peaks are 1.88 MPa, 1.49 MPa and 0.61 MPa, respectively.
 \paragraph{\quad}为了研究砰击速度对于LNG船保温杯砰击压力的影响，分别调整初始砰击速度为 $\mathbf{U}_{impact} = 2.5m/s$和 
                 $U_{impact} = 4m/s$，其他条件和subsection 3.2.1相同，并进行模拟。结合已获得的 $\mathbf{U}_{impact} = 5.5m/s$数值
-                结果，讨论了砰击速度对于不同测量点的载荷特性。Fig. 13给出了不同速度的LNG船保温板与水砰击的粒子分布情况。
+                结果，讨论了砰击速度对于不同测量点的载荷特性。Fig. 13给出了不同速度的LNG船绝缘板与水砰击的粒子分布情况。
                 可以看到砰击速度从2.5m/s到5.5m/s，水面和气垫的演变类似。当砰击速度增加，砰击造成的飞溅更加剧烈并且板底生成气泡的体积更小。
                 为了研究砰击速度对于LNG船保温杯砰击压力的效应，Fig. 14给出了不同砰击速度下板上五个测量点的压力时间历程。因为速度越低
                 的板在空中下落时间更长，所以更低速度的板的压力峰值出现地更晚，但是测量点压力随时间变化的趋势相似。
                 此外，所有测量点的压力峰值随着砰击速度的增加而单调增加。在不同砰击速度的三种情况下，最大砰击载荷都记录在测量点P1，并且三个
                 压力峰值分别为1.88MPa,1.49MPa和0.61MPa.
 
-\subsubsection{Influence of the deadrise angle on slamming of LNG tank insulation panel-静升角对LNG船保温板砰击的影响}
+\subsubsection{Influence of the deadrise angle on slamming of LNG tank insulation panel-静升角对LNG船绝缘板砰击的影响}
 \paragraph{\quad}In this subsection, the water slamming of the LNG tank insulation panel with different 
                 deadrise angles is simulated, and the influence of the deadrise angle on the slamming load is analyzed. 
                 The mass and initial impact velocity of the plate remain the same as those in subsection 3.2.1. Taking 
@@ -260,9 +260,9 @@
                 with deadrise angles of 2◦ and 4◦, for the panel with deadrise angle of 6◦, a small air cushion is formed 
                 between the left corner and the left dent of the panel when its left corner impacts the water as shown in 
                 the red box in Fig. 15, and then overflows the water from the left corner.
-\paragraph{\quad}在这一小节中，模拟了不同静升角下的LNG船保温板与水的砰击，并分析了静升角对砰击载荷的影响。
-                板的质量和初始砰击速度保持与subsection 3.2.1中相同。以板的左齿为中心，调整LNG船保温板的初始静升角分别为$\theta = 2^\circ$
-                和$\theta = 6^\circ$。Fig. 15给出了不同静升角的LNG船保温板与水砰击的粒子分布。可以看出越小的静升角的保温板能够困住更多
+\paragraph{\quad}在这一小节中，模拟了不同静升角下的LNG船绝缘板与水的砰击，并分析了静升角对砰击载荷的影响。
+                板的质量和初始砰击速度保持与subsection 3.2.1中相同。以板的左齿为中心，调整LNG船绝缘板的初始静升角分别为$\theta = 2^\circ$
+                和$\theta = 6^\circ$。Fig. 15给出了不同静升角的LNG船绝缘板与水砰击的粒子分布。可以看出越小的静升角的绝缘板能够困住更多
                 的空气，因此板底生成了更大的气泡。当静升角从$2^\circ$到#$6^\circ$，越大的静升角下的板底的气泡越靠近右侧。
                 此外，与静升角$2^\circ$和$4^\circ$下的板不同，对于静升角$6^\circ$，当左角砰击水面时，在左角和左齿间形成了一个更小的气垫，如
                 Fig. 15红框所示，随后从左角溢出水。
