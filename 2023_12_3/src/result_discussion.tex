@@ -44,11 +44,11 @@
                 板由静止释放并自由下落，最后以$5.5m/s$的速度与水砰击。在本文的数值模拟中，水域的宽度和深度
                 分别设置为$W=1.2m$和$H=0.4m$.此外，水和空气的参考密度分别设置为$1000kg/m^3$和$1kg/m^3$,
                 粒子的间距$\Delta x$设置为$0.002m$.在文献(Ma et al.,2016)，平板刚与水砰击的时刻定义为
-                时间坐标的原点。为了便于对比，对本文数值结果的时间坐标平移，使之与文献(Ma et al.,2016)一致。
-\begien{figure}[htbp]
+                时间坐标的原点。为了便于对比，对本文数值结果的时间坐标平移，使之与文献(Ma et al.,2016)一致。\\
+{
     \centering
-    \includegraphics{./source/Fig1.png}
-\end{figure}
+    \includegraphics[width=30em]{./source/Fig1.png}
+}
 \paragraph{\quad}From the velocity field shown in Fig. 2, it can be observed that clear 
                 circulating air jet surrounding the plate is generated during the falling process. 
                 This is because the air under the plate is compressed during the falling of the 
@@ -82,14 +82,14 @@
             结果表明，由本文采用的SPH方法获得的板中心压力时间历程和由Ma et al. (2016)获得的FVM结果吻合的很好，但略低于
             (Ma et al.,2016)的实验数据。至于整个板的砰击力，本文的结果比Yang et al. (2020)的SPH结果的峰值更高，但
             本文SPH方法获得的结果和实验结果以及Ma et al.(2016)有很好的一致性。总而言之，对于包含气垫效应的平板和水的砰击实验，
-            当前本文的方法表现出良好的结构物砰击载荷的预测精度。
-\begien{figure}[htbp]
+            当前本文的方法表现出良好的结构物砰击载荷的预测精度。\\
+{
     \centering
-    \includegraphics{./source/Fig2.png}
-    \includegraphics{./source/Fig3.png}
-    \includegraphics{./source/Fig4.png}
-    \includegraphics{./source/Fig5.png}
-\end{figure}
+    \includegraphics[width=30em]{./source/Fig2.png} \\
+    \includegraphics[width=30em]{./source/Fig3.png} \\
+    \includegraphics[width=30em]{./source/Fig4.png} \\
+    \includegraphics[width=30em]{./source/Fig5.png} \\
+}
 
 \paragraph{\quad}Furthermore, also through this numerical test, the convergence property of the 
                 adopted SPH model is checked. Here, the simulations with the particle resolutions 
@@ -103,11 +103,11 @@
 \paragraph{\quad}此外，此次数值试验验证了采用的SPH方法的收敛性质。这里分别进行了粒子分辨率为$\Delta x = 0.003m$
                 和$\Delta x = 0.0015m$的模拟。结合$\Delta x = 0.002 m$的数值结果，不同粒子分辨率的板中心压力
                 的时间历程和整个板的砰击压力如Fig. 6所示。可以发现粒子分辨率从$\Delta x = 0.002m$ 增加的$\Delta x = 0.0015m$
-                时，板中心压力的时间历程和整个板的砰击力有类似的数值结果，这表明本文采用的SPH方法有良好的收敛性。
-\begien{figure}[htbp]
+                时，板中心压力的时间历程和整个板的砰击力有类似的数值结果，这表明本文采用的SPH方法有良好的收敛性。\\
+{
     \centering
-    \includegraphics{./source/Fig6.png}
-\end{figure}
+    \includegraphics[width=30em]{./source/Fig6.png}
+}
 \subsubsection{Influence of the air on slamming load of flat plate-空气对砰击载荷的影响}
 \paragraph{\quad}To investigate the effect of the air on the water impact of the flat plate, 
             the slamming loads of the plate obtained by taking the air into account or not are 
@@ -118,11 +118,11 @@
             plate is also reduced.
 \paragraph{\quad}为研究空气对于平板和水砰击的效应，比较考虑和不考虑情况下的板的砰击载荷。Fig. 7分别展现了有空气和没有
                 空气$t=0s$时计算域内的压力分布。结果表明，由于板底空气的存在，板的砰击压力的值大幅下降，而且板底
-                的压力面面积也有所减小。
-\begien{figure}[htbp]
+                的压力面面积也有所减小。\\
+{
     \centering
-    \includegraphics{./source/Fig7.png}
-\end{figure}
+    \includegraphics[width=30em]{./source/Fig7.png}
+}
 
 \paragraph{\quad}Fig. 8 displays the comparison of the slamming load of plate with and without air. 
                 It can be seen that ignoring the air overestimates the magnitude of the slamming 
@@ -135,11 +135,11 @@
                 the pressure wave is significantly reduced.
 \paragraph{\quad}Fig. 8显示了有无空气的砰击载荷的比较。可以看书忽略空气导致过高估计了砰击载荷，却过低估计了砰击的宽度，
                 其反应了气垫的缓冲效应。此外由于空气的存在，反射波在砰击后明显减弱。因为空气的阻抗远远小于水的阻抗。
-                当反射压力波从水中传播到板下空气中时，即从高阻抗介质到低阻抗介质，压力波显著较小。
-\begien{figure}[htbp]
+                当反射压力波从水中传播到板下空气中时，即从高阻抗介质到低阻抗介质，压力波显著较小。\\
+{
     \centering
-    \includegraphics{./source/Fig8.png}
-\end{figure}
+    \includegraphics[width=30em]{./source/Fig8.png}
+}
 \subsubsection{Influence of the plate length on slamming load-板长对于砰击载荷的影响}
 \paragraph{\quad}Fig. 9 shows the time histories of the slamming force of the plate 
                 with different lengths in the presence and absence of air. It can be 
@@ -172,11 +172,11 @@
                 当板长越长，困在板下的空气数目越多。因此，由于空气的压缩效应，板和水的接触变迟，导致砰击载荷峰值的滞后。从
                 砰击载荷大小的角度看，Table 1比较了有无空气时不同板长的平板砰击力峰值。这里有无空气的砰击力分别用$F_{air}$和$F_{no_air}$
                 表示。因为更宽的板下的缓冲效应更明显，有无空气的砰击力峰值的差异变得更大，如Table 1所示。在板长$l = 0.5m$的情况下，
-                得益于空气的存在，砰击力的大小减小了45.8\%。
-\begien{figure}[htbp]
+                得益于空气的存在，砰击力的大小减小了45.8\%。\\
+{
     \centering
-    \includegraphics{./source/Fig9.png}
-\end{figure}
+    \includegraphics[width=30em]{./source/Fig9.png}
+}
 
 \subsection{Slamming of LNG tank insulation panel-LNG船绝缘板砰击}
 \subsubsection{Simulation of slamming process}
@@ -193,11 +193,11 @@
 \paragraph{\quad}在本小节中，模拟了Marrone et al. (2017)研究的一个复杂的工程问题，即LNG船绝缘板的砰击，重点研究了
                 入水过程中的气垫效应，并在附录A中提供相应的精度测试。对于本文的LNG船绝缘板的模拟，计算模型与Marrone et al. (2017)
                 类似，包括水域和绝缘板，如Fig. 10所示。本文的模拟中，绝缘板的质量时$69.7Kg$,绝缘板的与水砰击的速度是
-                $5.5m/s$。粒子分辨率设置为$\Delta x = 0.002m$,整个计算域离散为312992个粒子。
-\begien{figure}[htbp]
+                $5.5m/s$。粒子分辨率设置为$\Delta x = 0.002m$,整个计算域离散为312992个粒子。\\
+{
     \centering
-    \includegraphics{./source/Fig10.png}
-\end{figure}
+    \includegraphics[width=30em]{./source/Fig10.png}
+}
 \paragraph{\quad}Fig. 11 shows the particle distributions and corresponding pressure 
                 fields at several typical time instants. It can be seen that with the 
                 fall of the panel, the left dent of the plate first touches the water 
@@ -218,11 +218,11 @@
                 时间内，随着板持续下落，气泡的体积减小而气泡内压力上升。可以看出，气泡内部的压力在整个
                 水气界面处是均匀且连续的。在$t=0.0237s$时，板的左角与水面猛烈砰击，产生了巨大的砰击压力波。
                 最后，板的右角与水面砰击，其砰击压力波峰值远小于右角砰击所产生的。在$t \in (0.0237s,0.0282s)$时间内，
-                气泡膨胀并从左齿逸出，由于气泡体积的增大，其压力开始减小。
-\begien{figure}[htbp]
+                气泡膨胀并从左齿逸出，由于气泡体积的增大，其压力开始减小。\\
+{
     \centering
-    \includegraphics{./source/Fig11.png}
-\end{figure}
+    \includegraphics[width=30em]{./source/Fig11.png}
+}
 \paragraph{\quad}Fig. 12 gives the time histories of the pressure of the five measuring 
                 points on the panel. It can be observed that for the point P1 which is 
                 located at the left corner of the panel, its pressure peak is the largest 
@@ -247,11 +247,11 @@
                 与其他测量点不同，P3和P4的压力曲线非常平滑，没有明显的震荡，而且它们的峰值非常接近，但远小于其他测量点的峰值。
                 这可以被解释为事实上这两个点被板下落过程中困住的气泡所包围，所以其压力与气泡压力近似相等，
                 并且由于气垫的缓冲效应，砰击载荷大幅降低。对于P5，由于气垫的消失，其压力再次出现震荡。此外，由于板的速度的下降，
-                P5的峰值也小于P1.
-\begien{figure}[htbp]
+                P5的峰值也小于P1.\\
+{
     \centering
-    \includegraphics{./source/Fig12.png}
-\end{figure}
+    \includegraphics[width=30em]{./source/Fig12.png}
+}
 \subsubsection{Influence of the impact velocity on slamming of LNG tank insulation panel-砰击速度对于LNG船绝缘板砰击的影响}
 \paragraph{\quad}To investigate the effect of impact velocity on slamming pressure of LNG tank insulation panel, the 
                 simulations are conducted by adjusting the initial impact velocity to $\mathbf{U}_{impact} = 2.5m/s$ and 
@@ -278,12 +278,12 @@
                 为了研究砰击速度对于LNG船保温杯砰击压力的效应，Fig. 14给出了不同砰击速度下板上五个测量点的压力时间历程。因为速度越低
                 的板在空中下落时间更长，所以更低速度的板的压力峰值出现地更晚，但是测量点压力随时间变化的趋势相似。
                 此外，所有测量点的压力峰值随着砰击速度的增加而单调增加。在不同砰击速度的三种情况下，最大砰击载荷都记录在测量点P1，并且三个
-                压力峰值分别为1.88MPa,1.49MPa和0.61MPa.
-\begien{figure}[htbp]
+                压力峰值分别为1.88MPa,1.49MPa和0.61MPa.\\
+{
     \centering
-    \includegraphics{./source/Fig13.png}
-    \includegraphics{./source/Fig14.png}
-\end{figure}
+    \includegraphics[width=30em]{./source/Fig13.png} \\
+    \includegraphics[width=30em]{./source/Fig14.png}
+}
 
 \subsubsection{Influence of the deadrise angle on slamming of LNG tank insulation panel-静升角对LNG船绝缘板砰击的影响}
 \paragraph{\quad}In this subsection, the water slamming of the LNG tank insulation panel with different 
@@ -303,11 +303,11 @@
                 和$\theta = 6^\circ$。Fig. 15给出了不同静升角的LNG船绝缘板与水砰击的粒子分布。可以看出越小的静升角的绝缘板能够困住更多
                 的空气，因此板底生成了更大的气泡。当静升角从$2^\circ$到#$6^\circ$，越大的静升角下的板底的气泡越靠近右侧。
                 此外，与静升角$2^\circ$和$4^\circ$下的板不同，对于静升角$6^\circ$，当左角砰击水面时，在左角和左齿间形成了一个更小的气垫，如
-                Fig. 15红框所示，随后从左角溢出水。
-\begien{figure}[htbp]
+                Fig. 15红框所示，随后从左角溢出水。\\
+{
     \centering
-    \includegraphics{./source/Fig15.png}
-\end{figure}
+    \includegraphics[width=30em]{./source/Fig15.png}
+}
 
 \paragraph{\quad}Fig. 16 gives the time histories of the pressure of the five measuring points on the panel 
                 with different deadrise angles. It can be found that generally, the slamming pressure peak 
@@ -326,10 +326,10 @@
                 具体来说，对于点P3,P4,P5,因为越大的静升角使这些测量低与水面越远，可以发现越大静升角上测量点的时间历程有越大且越滞后的压力峰值。
                 特别地，对于点P3和P4，由于板下形成的气泡越小，越大的静升角其板上压力的时间历程的脉冲宽度大幅减小。对于点P1和P2，更大
                 静升角的板的压力峰值出现得更早。然而，对点P1，其压力峰值的变化趋势是不同的。可以看出静升角$6^\circ$下板压力峰值小于
-                静升角$4^\circ$下板的压力峰值，并接近静升角$2^\circ$下板的压力峰值，这是因为点P1下形成的小气垫。
-\begien{figure}[htbp]
+                静升角$4^\circ$下板的压力峰值，并接近静升角$2^\circ$下板的压力峰值，这是因为点P1下形成的小气垫。\\
+{
     \centering
-    \includegraphics{./source/Fig16.png}
-\end{figure}
+    \includegraphics[width=30em]{./source/Fig16.png}
+}
 
 \end{document}

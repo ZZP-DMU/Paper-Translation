@@ -17,8 +17,8 @@
 
 %formula 1
 \begin{equation}
-   \left\{ \frac{D \rho_a}{Dt}=-\rho_a\sum_{b}(\mathbf{u}_b - \mathbf{u}_a)\nabla_a W_{ab}V_b ,\\
-   \frac{D \mathbf{u}_a}{Dt}=\mathbf{g}-\sum_{b}(\frac{p_a+p_b}{\rho_a})\nabla_a W_{ab} V_b \right. \qquad(1)
+   \begin{cases} \frac{D \rho_a}{Dt}=-\rho_a\sum_{b}(\mathbf{u}_b - \mathbf{u}_a)\nabla_a W_{ab}V_b ,\\
+   \frac{D \mathbf{u}_a}{Dt}=\mathbf{g}-\sum_{b}(\frac{p_a+p_b}{\rho_a})\nabla_a W_{ab} V_b \end{cases} \qquad
 \end{equation}
 
 \paragraph{\quad}in which the subscript a denotes the a-th particle, and subscript
@@ -45,8 +45,8 @@
 
 %formula 2
 \begin{equation}
-   \left\{ S1:(\rho_L,u_L,p_L)=(\rho_b,\mathbf{u}_b\cdot\hat{\mathbf{r}}_{ab},p_b), \\
-   S2:(\rho_R,u_R,p_R)=(\rho_a,\mathbf{u}_a\cdot\hat{\mathbf{r}}_{ab},p_a) \right. \qquad(2)
+   \begin{cases} S1:(\rho_L,u_L,p_L)=(\rho_b,\mathbf{u}_b\cdot\hat{\mathbf{r}}_{ab},p_b), \\
+   S2:(\rho_R,u_R,p_R)=(\rho_a,\mathbf{u}_a\cdot\hat{\mathbf{r}}_{ab},p_a) \end{cases} \qquad
 \end{equation}
 
 \paragraph{\quad}in which the subscripts L and R refer to the states of left and right, 
@@ -64,12 +64,12 @@
 
 % formula 3
 \begin{equation}
-   \left\{ \frac{D \rho_a}{Dt}=-2\rho_a \sum_{b}(\mathbf{u}^*-\mathbf{u}_a)\nabla_a W_{ab} V_b, \\
-   \frac{D \mathbf{u}_a}{Dt}=\mathbf{g}-2\sum_{b}(\frac{p^*}{p_a})\nabla_a W_{ab} V_b \right. \qquad (3)
+   \begin{cases} \frac{D \rho_a}{Dt}=-2\rho_a \sum_{b}(\mathbf{u}^*-\mathbf{u}_a)\nabla_a W_{ab} V_b, \\
+   \frac{D \mathbf{u}_a}{Dt}=\mathbf{g}-2\sum_{b}(\frac{p^*}{p_a})\nabla_a W_{ab} V_b \end{cases} \qquad 
 \end{equation}
 
-\paragraph{\quad}in which $\mathbf{u}^*$ is computed by $\mathbf{u}^* = \mathbf{u}^*\hat{r}_{ab} + [ \frac{\mathbf{u}_a +\mathbf{u}_b}{2}-\frac{(u_L+u_R)\hat{r}_{ab}{2} ] $, 
-                and the unit vecto $\mathbf{r}_{ab}$ is defined as  $\matbf{r}_{ab} = \frac{\mathbf{r}_a-\mathbf{r}_b}{|\mathbf{r}_a-\mathbf{r}_b|}$. $p^*$and $u^*$ 
+\paragraph{\quad}in which $\mathbf{u}^*$ is computed by $\mathbf{u}^* = \mathbf{u}^*\hat{r}_{ab} + [ \frac{\mathbf{u}_a +\mathbf{u}_b}{2}-\frac{(u_L+u_R)\hat{r}_{ab}}{2} ] $, 
+                and the unit vecto $\mathbf{r}_{ab}$ is defined as  $\mathbf{r}_{ab} = \frac{\mathbf{r}_a-\mathbf{r}_b}{|\mathbf{r}_a-\mathbf{r}_b|}$. $p^*$and $u^*$ 
                 are intermediate variables which are solved by approximated Riemann 
                 solvers. In this work, the PVRS approximate Riemann solver (Toro, 2013) 
                 is adopted. This Riemann solver determines the intermediate 
@@ -77,22 +77,22 @@
                 it is suitable for handling the problem with a large density ratio. 
                 For the adopted PVRS approximate Riemann solver, $u^*$ and $p^*$ (Toro, 2013) 
                 are solved by
-\paragraph{\quad}式中， $\mathbf{u}^*$使用$\mathbf{u}^* = \mathbf{u}^*\hat{r}_{ab} + [ \frac{\mathbf{u}_a +\mathbf{u}_b}{2}-\frac{(u_L+u_R)\hat{r}_{ab}{2} ] $
-                计算，单位向量$\mathbf{r}_{ab}$ 定义为 $\matbf{r}_{ab} = \frac{\mathbf{r}_a-\mathbf{r}_b}{|\mathbf{r}_a-\mathbf{r}_b|}$.
+\paragraph{\quad}式中， $\mathbf{u}^*$使用$\mathbf{u}^* = \mathbf{u}^*\hat{r}_{ab} + [ \frac{\mathbf{u}_a +\mathbf{u}_b}{2}-\frac{(u_L+u_R)\hat{r}_{ab}}{2} ] $
+                计算，单位向量$\mathbf{r}_{ab}$ 定义为 $\mathbf{r}_{ab} = \frac{\mathbf{r}_a-\mathbf{r}_b}{|\mathbf{r}_a-\mathbf{r}_b|}$.
                 $p^*$和 $u^*$是由近似黎曼求解器求解的中间变量。本文采用PVRS近似黎曼求解器(Toro,2013)。
                 这个黎曼求解器通过考虑流体阻抗来确定中间变量  $u^*$ 和$p^*$，因此该方法适合处理大密度比问题。
                 对于采用的PVRS近似黎曼求解器， $u^*$ 和 $p^*$(Toro,2013)采用下式求解
                 
 %formula 4
 \begin{equation}
-   \left\{ u^*=\frac{1}{Z_L+Z_R}[Z_L u_L + Z_R u_R +(p_L - p_R)], \\
-   p^* = \frac{1}{Z_L + Z_R}[Z_R p_L + Z_L p_R + Z_L Z_R(u_L -u_R)] \right. \qquad (4)
+   \begin{cases} u^*=\frac{1}{Z_L+Z_R}[Z_L u_L + Z_R u_R +(p_L - p_R)], \\
+   p^* = \frac{1}{Z_L + Z_R}[Z_R p_L + Z_L p_R + Z_L Z_R(u_L -u_R)] \end{cases} \qquad 
 \end{equation}
 
 \paragraph{\quad}in which $(\rho_L, \mathbf{u}_L, p_L, c_L) = (\rho_b, \mathbf{u}_b \cdot \hat{x}_{ab}, p_b, c_b)$ and 
                 $(\rho_R, \mathbf{u}_R, p_R, c_R) = (\rho_a, \mathbf{u}_a \cdot \hat{x}_{ab}, p_a, c_a)$, and $Z_L$ and
                 $Z_R$ represent $\rho_b c_b$ and $\rho_a c_a$,respectively. $c $denotes the speed of sound.
-\paragrap{\quad}式中，$(\rho_L, \mathbf{u}_L, p_L, c_L) = (\rho_b, \mathbf{u}_b \cdot \hat{x}_{ab}, p_b, c_b)$且
+\paragraph{\quad}式中，$(\rho_L, \mathbf{u}_L, p_L, c_L) = (\rho_b, \mathbf{u}_b \cdot \hat{x}_{ab}, p_b, c_b)$且
                 $(\rho_R, \mathbf{u}_R, p_R, c_R) = (\rho_a, \mathbf{u}_a \cdot \hat{x}_{ab}, p_a, c_a)$，同时 $Z_L$ 和
                 $Z_R$ 分别表示 $\rho_b c_b$ 和 $\rho_a c_a$。$c$表示声速。
             
@@ -107,7 +107,7 @@
     
 %formula 5
 \begin{equation}
-   p^*=\frac{1}{Z_L+Z_R}[Z_R p_L+Z_L p_R + \phi Z_L Z_R(u_L - u_R)], \qquad (5)
+   p^*=\frac{1}{Z_L+Z_R}[Z_R p_L+Z_L p_R + \phi Z_L Z_R(u_L - u_R)], \qquad 
 \end{equation}
 
 \paragraph{\quad}in which the value of $\phi$ is determined by $\phi = min{λmax[\tilde{ρ}(u_L-u_R), 0], c_{RL}/D}$, 
@@ -138,7 +138,7 @@
 
 %formula 6
 \begin{equation}
-   p=\frac{c_0^2 \rho_0}{\gamma}((\rho / \rho_0)^\gamma-1) \qquad (6)
+   p=\frac{c_0^2 \rho_0}{\gamma}((\rho / \rho_0)^\gamma-1) \qquad 
 \end{equation}
 
 \paragraph{\quad}in which $\rho_0$ refers to the reference density and $c_0$ denotes the 
@@ -156,7 +156,7 @@
 
 %formula 7
 \begin{equation}
-   c_0 \ge 10 max(|\mathbf{u_{max}}|,\sqrt{\frac{\Delta p_{max}}{\rho_0}}) \qquad (7)
+   c_0 \ge 10 max(|\mathbf{u_{max}}|,\sqrt{\frac{\Delta p_{max}}{\rho_0}}) \qquad 
 \end{equation}
 
 \paragraph{\quad}in which for this problem of water entry, instead of the 
@@ -196,7 +196,7 @@
 
 %formula 8
 \begin{equation}
-   \Delta t = \frac{0.25h}{c_{max}+|\mathbf{u}_{max}} \qquad (8)
+   \Delta t = \frac{0.25h}{c_{max}+|\mathbf{u}_{max}} \qquad
 \end{equation}
 
 
@@ -232,7 +232,7 @@
 
 %formula 9
 \begin{equation}
-   p_d = \frac{\sum_{f}p_f W_{df} + \sum_{f}\rho_f(\mathbf{r}_f-\mathbf{r}_d)(\mathbf{a}_d-\mathbf{g})W_{df}}{\sum_{f}W_{df}}, \qquad (9)
+   p_d = \frac{\sum_{f}p_f W_{df} + \sum_{f}\rho_f(\mathbf{r}_f-\mathbf{r}_d)(\mathbf{a}_d-\mathbf{g})W_{df}}{\sum_{f}W_{df}}, \qquad
 \end{equation}
 
 \paragraph{\quad}in which the subscript d represents the dummy particle, 
@@ -246,7 +246,7 @@
 %formula 10
 
 \begin{equation}
-   \rho_d = \rho_0(\frac{p_b \gamma}{c_0^2\rho_0}+1)^{\frac{1}{\gamma}} \qquad (10)
+   \rho_d = \rho_0(\frac{p_b \gamma}{c_0^2\rho_0}+1)^{\frac{1}{\gamma}} \qquad 
 \end{equation}
 
 \paragraph{\quad}For the fixed wall boundary particles, their velocity and 
@@ -260,8 +260,8 @@
 
 %formula 11
 \begin{equation}
-   \left\{ \mathbf{u}_w =  \mathbf{U}_0 + \mathbf{\Omega}_0 \times \mathbf{r}_{w0}, \\
-   \mathbf{a}_w = \frac{D \mathbf{U}_0}{Dt}+\frac{D \mathbf{\Omega}_0}{Dt}\times\mathbf{r}_{w0}+\mathbf{\Omega}_0\times\mathbf{u}_{w0} \right. \qquad (11)
+   \begin{cases} \mathbf{u}_w =  \mathbf{U}_0 + \mathbf{\Omega}_0 \times \mathbf{r}_{w0}, \\
+   \mathbf{a}_w = \frac{D \mathbf{U}_0}{Dt}+\frac{D \mathbf{\Omega}_0}{Dt}\times\mathbf{r}_{w0}+\mathbf{\Omega}_0\times\mathbf{u}_{w0} \end{cases} \qquad 
 \end{equation}
 
 \paragraph{\quad}in which $\mathbf{r}_{w0}$ and $\mathbf{u}_{w0}$ can be calculated by
@@ -276,8 +276,8 @@
 
 %formula 12
 \begin{equation}
-   \left\{ \frac{D \mathbf{U}_0}{Dt}=\frac{F_{fw}}{M}+\mathbf{g}, \\
-   \frac{D \mathbf{\Omega}_0}{Dt} = \frac{\mathbf{T}_{fw}}{I} \right. \qquad (12)
+   \begin{cases} \frac{D \mathbf{U}_0}{Dt}=\frac{F_{fw}}{M}+\mathbf{g}, \\
+   \frac{D \mathbf{\Omega}_0}{Dt} = \frac{\mathbf{T}_{fw}}{I} \end{cases} \qquad 
 \end{equation}
 
 \paragraph{\quad}in which $\mathbf{M}$ and $\mathbf{I}$ denote the mass and the moment of 
@@ -288,8 +288,8 @@
 
 %formula 13
 \begin{equation}
-   \left\{ \mathbf{F}_{fw} = \sum_{f}\sum_{w}(\frac{\mathbf{r}_f+\mathbf{r}_w}{2}-\mathbf{r}_c)\times p_{fw}(V_f^2+V_w^2)\Delta_f W_{fw}, \\
-   p_{fw}=\frac{\rho_w p_f+\rho_f p_2}{\rho_f+\rho_w} \right. \qquad (13)
+   \begin{cases} \mathbf{F}_{fw} = \sum_{f}\sum_{w}(\frac{\mathbf{r}_f+\mathbf{r}_w}{2}-\mathbf{r}_c)\times p_{fw}(V_f^2+V_w^2)\Delta_f W_{fw}, \\
+   p_{fw}=\frac{\rho_w p_f+\rho_f p_2}{\rho_f+\rho_w} \end{cases} \qquad 
 \end{equation}
 
 \paragraph{\quad}where $p_{fw}$ is computed by$ p_{fw} = \frac{\rho_w p_f +\rho_f p_w}{ \rho_f +\rho_w}$ , 
@@ -327,7 +327,7 @@
 
 %formula 14
 \begin{equation}
-   \delta \mathbf{r}^{'}_a = -A_s h |\mathbf{u}|_{max} \Delta t \nabla C_a;\nabla C_a = \sum_{b}\nabla_a W_{ab} V_b , \qquad (14)
+   \delta \mathbf{r}^{'}_a = -A_s h |\mathbf{u}|_{max} \Delta t \nabla C_a;\nabla C_a = \sum_{b}\nabla_a W_{ab} V_b , \qquad 
    \end{equation}
 
 \paragraph{\quad}in which the parameter$ A_s$ is set to 2 (Skillen et al., 2013). 
@@ -339,16 +339,16 @@
                 which indicates that the water-gas interface can be regarded as the 
                 free surface. The shifting of the heavy phase particles (Khayyer et al., 2019) 
                 is as follows
-\paragrap{\quad}式中参数$A_s$设为2.$|\mathbf{u}|_{max}$表示最大的粒子速度$\Delta t$表示时间步。
+\paragraph{\quad}式中参数$A_s$设为2.$|\mathbf{u}|_{max}$表示最大的粒子速度$\Delta t$表示时间步。
                 此外，采用了Khayyer et al.(2019)发展的多相粒子转移技术，其主要包含两个步骤。
                 首先忽略轻相粒子，重相粒子移动，这表明气液界面可被视为自由表面。重相粒子的移动
                 描述如下
 
 %formula 15
 \begin{equation}
-   \delta \mathbf{r}_a = \left\{ 0, \quad if \quad a \in A_1, \\
+   \delta \mathbf{r}_a = \begin{cases} 0, \quad if \quad a \in A_1, \\
    (I_\tilde{n}_a\otimes\tilde{n}_a)\delta \mathbf{r}_a \quad if \quad a \in A_2, \\
-   \delta \mathbf{r}_a^{'} \quad if \quad a \in A_3 \right. (15)
+   \delta \mathbf{r}_a^{'} \quad if \quad a \in A_3 \end{cases} 
 \end{equation}
 
 \paragraph{\quad}in which $\mathbf{I}$ is the identity tensor and$\tilde{n}_a$ is the modified normal 
@@ -358,7 +358,7 @@
             
 %formula 16
 \begin{equation}
-   \tilde{n}_a = -\frac{B_a\cdot \Delta C_a }{|B_a \cdot \Delta C_a |};B_a = (\sum_{b}\mathbf{r}_{ab}\otimes\Delta_{a}W_{ab}V_b)^{-1}, \qquad (16)
+   \tilde{n}_a = -\frac{B_a\cdot \Delta C_a }{|B_a \cdot \Delta C_a |};B_a = (\sum_{b}\mathbf{r}_{ab}\otimes\Delta_{a}W_{ab}V_b)^{-1}, \qquad 
 \end{equation}
 
 \paragraph{\quad}$A_1$ denotes the splashing particles, $A_2$ represents the free surface particles 
@@ -372,7 +372,7 @@
                 判断，本文采用了Wang et al. (2019c)提出的优化自由表面搜索法，其通过位置矢量的散度(Lee et al.,2008)对自由表面的粒子进行
                 大致搜索，随后Marrone et al. (2010)提出的通过伞状区域进行扫描对自由表面粒子进一步区分。
 
-\paragrap{\quad}After conducting the shifting of the heavy phase particles, the particles 
+\paragraph{\quad}After conducting the shifting of the heavy phase particles, the particles 
                 of light phase are shifted, and at this time the regularized particles of 
                 heavy phase need to be considered. The shifting of light particles can be calculated by
 \paragraph{\quad}在重相粒子移动完成后，轻相粒子移动，并且此时需要考虑重相正则化的粒子。轻相粒子的移动可以通过下式计算
@@ -380,7 +380,7 @@
 %formula 17
 
 \begin{equation}
-   \delta \mathbf{r}_a = \delta \mathbf{r}_a^{'}  \qquad (17)
+   \delta \mathbf{r}_a = \delta \mathbf{r}_a^{'}  \qquad 
 \end{equation}
 
 \paragraph{\quad}It can be observed that different from the shifting of water particles, the air particles 
