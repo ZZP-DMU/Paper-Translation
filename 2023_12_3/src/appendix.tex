@@ -20,7 +20,10 @@
                 在当前模拟中，粒子的间距$\Delta x$设置为0.002m.与Marrone et al.(2017)所用的马赫数$Ma=U_{impact}/c_{water}=0.1$不同，
                 本次采用了$Ma=U_{impact}/c_{water}=0.015$.和Marrone er al.(2017)类似，为便于比较，平移了数值结果的时间坐标，使之与
                 实验数据(2017)相一致。
-
+\begien{figure}[htbp]
+    \centering
+    \includegraphics{./source/Fig17.png}
+\end{figure}
 \paragraph{\quad}Fig. 18 shows the particle distributions and corresponding pressure fields at three 
                 typical time instants. It can be observed that when the left corner of the panel impacts 
                 the water, a violent impact pressure wave is produced. With the fall of the panel, the 
@@ -34,6 +37,10 @@
                 随着板的下落，被困的空气在板下形成了气泡。由于气泡内空气被压缩，一小片高压区域在板下形成。当气泡膨胀并从右齿处
                 逸出，气泡内压力变低。总而言之，本文的结果可以捕捉板下气垫的流动模式和相对光滑的压力场。然而，当水砰击到结构物时，
                 在局部区域会形成一定的压力噪声。
+\begien{figure}[htbp]
+    \centering
+    \includegraphics{./source/Fig18.png}
+\end{figure}
 
 \paragraph{\quad}Fig. 19 gives the time histories of the pressure of the six measuring points on the panel, 
                 and it can be found that generally, compared with the Riemann-ALE SPH results of 
@@ -57,4 +64,14 @@
                 水时，本文的压力时间历程相对尖锐，峰值较大。另一方面，因为使用了耗散限制器，极大减少了由黎曼求解器产生的好散，并且当前模拟
                 中的数值粘度更低，这在一定程度上也增大了压力峰值。然而，与Marrone et al.(2017)中的黎曼-ALE SPH所获得的光滑压力变化相比，
                 本文的结果给出了更严重的震荡，特别是对于测量点49，53和92，这也可以归因于在当前SPH方法中应用了更高的水声速和使用了耗散限制器。
+\begien{figure}[htbp]
+    \centering
+    \includegraphics{./source/Fig19.png}
+\end{figure}
+
+\begien{figure}[htbp]
+    \centering
+    \includegraphics{./source/Fig20.png}
+    \includegraphics{./source/Fig21.png}
+\end{figure}
 \end{document}
