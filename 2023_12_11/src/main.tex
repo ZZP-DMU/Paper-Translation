@@ -20,19 +20,19 @@
 
 \paragraph{\quad}传统vtk格式包含五个部分。
 \begin{enumerate}
-    \item 第一个部分是文件的版本和标识符。这一部分包含单行:'# vtk DataFile version x.x'.
+    \item {第一个部分是文件的版本和标识符。这一部分包含单行:'# vtk DataFile version x.x'.
           除版本号x.x外，这一行必须如所示完全一致，而版本数随vtk发行版变化而变化(注：当前版本
-          数为3.0，版本1.0和版本2.0与版本3.0文件兼容)
-    \item 第二个部分是标题。标题由以结束符'\n'结尾的字符串组成。其最大字符数为256。它可用于描述
-          数据和其他任何相关信息。
-    \item 下一部分是文件格式。该文件格式描述文件的类型是ASCII或二进制文件。单词ASCII或BINARY
-          必须出现在这一行。
-    \item 第四部分为数据结构。几何部分描述了数据集的几何与拓扑。这一部分包含以DATASET开头的关键字
+          数为3.0，版本1.0和版本2.0与版本3.0文件兼容)}
+    \item {第二个部分是标题。标题由以结束符'\n'结尾的字符串组成。其最大字符数为256。它可用于描述
+          数据和其他任何相关信息。}
+    \item {下一部分是文件格式。该文件格式描述文件的类型是ASCII或二进制文件。单词ASCII或BINARY
+          必须出现在这一行。}
+    \item {第四部分为数据结构。几何部分描述了数据集的几何与拓扑。这一部分包含以DATASET开头的关键字
           的以及其后描述数据集类型的关键字的单行组成。随后，根据数据集的类型，其他关键字/数据组合
-          定义了真实数据。
-    \item 最后一部分描述数据集的属性。这一部分以关键字POINT\_DATA或者CELL\_DATA开始，后跟一个整数
+          定义了真实数据。}
+    \item {最后一部分描述数据集的属性。这一部分以关键字POINT\_DATA或者CELL\_DATA开始，后跟一个整数
           分别表示点或单元的数量。POINT\_DATA或CELL\_DATA谁先出现不重要。其他关键字/数据组合定义
-          真实数据集的属性值(如标量，向量，张量，发现，纹理坐标或场量)。
+          真实数据集的属性值(如标量，向量，张量，发现，纹理坐标或场量)。}
 \end{enumerate}
 \paragraph{\quad}文件格式概述如图1所示。前三部分是强制性的，但其他两个是可选的。因此你可以通过操作
                 系统文件操作或vtk过滤器来合并数据，灵活地混合和匹配数据集属性以及几何图形。关键字
@@ -45,7 +45,7 @@
 
 \paragraph{\quad}在描述数据文件格式前请注意一下几点。
 \begin{itemize}
-    \item {dataType是bit,unsigned_char,char,unsigned_short,unsigned_int,int,unsigned_long,long,
+    \item {dataType是bit,unsigned\_char,char,unsigned\_short,unsigned\_int,int,unsigned\_long,long,
           float或者double其中之一。这些关键字用于描述数据的形式，既为了从文件中读取数据也为构建合适的
           内部数据对象。并非所有类都支持所有的数据类型。}
 
@@ -82,7 +82,7 @@
     \item {
         结构化点 \\
         该文件格式支持一维，二维和三维的结构化点数据集。其dimensions值$n_x,n_y,n_z$必须大于等于1.其spacing(间距)值
-        必须大于0.(注：在版本1.0的数据文件中，spacing(间距)被称为“长宽比”，ASPECT_RATIO在版本2.0的数据结构中仍可使用，
+        必须大于0.(注：在版本1.0的数据文件中，spacing(间距)被称为“长宽比”，ASPECT\_RATIO在版本2.0的数据结构中仍可使用，
         但不建议) \\
         \begin{verbatim}
             DATASET STRUCTURE_POINTS 
@@ -124,11 +124,11 @@
         多边形数据 \\
         多边形数据集由曲面图形图元顶点(和多边形顶点),直线(和折线)，多边形
         (各种类型)和三角形的任意组合组成。多边形数据由POINTS，VERTICES,LINES,
-        POLYGONS或者TRIANGLE_STRIPS部分定义。POINTS的定义与我们看到的结构化
-        网格的定义相同。VERTICES,LINES,POLYGONS或者TRIANGLE_STRIPS关键词定义了
+        POLYGONS或者TRIANGLE\_STRIPS部分定义。POINTS的定义与我们看到的结构化
+        网格的定义相同。VERTICES，LINES，POLYGONS或者TRIANGLE\_STRIPS关键词定义了
         多边形数据集拓扑。每一个这样的关键词需要两个参数：单元数n和单元列表的大小size。
         单元列表大小是表示列表所需的所有整数值。(例如，每个单元的numPoints之和与连通性指数)
-        VERTICES,LINES,POLYGONS或者TRIANGLE_STRIPS不是必须的。
+        VERTICES,LINES,POLYGONS或者TRIANGLE\_STRIPS不是必须的。
         \begin{verbatim}
             DATASET POLYDATA
             POINTS n dataType
@@ -165,7 +165,7 @@
             非结构化网格 \\
             非结构化网格数据集包含任意可能的单元类型的组合。非结构化网格由点，单元和单元类型定义。
             CELLS关键字要求两个参数：单元数n和单元列表的大小size。单元列表大小是表示列表所需的所有整数值(例如，
-            每个单元的numPoints之和与连通性指数)。CELL_TYPE关键字要求一个参数：单元数n。这个值应与CELLS关键词
+            每个单元的numPoints之和与连通性指数)。CELL\_TYPE关键字要求一个参数：单元数n。这个值应与CELLS关键词
             指定的值相匹配。单元类型数据是每个单元一个指定单元类型的整数值(见vtkCell.h或图二)
             \begin{verbatim}
                 DATASET UNSTRUCTURED_GRID
@@ -469,7 +469,7 @@ VECTORS vectors float
  
 \paragraph{\quad}第四个即最后一个示例表示为场的数据。你可能
             希望查看158页"Working With Field Data"，以了解
-            如何操作该数据(下面的数据场可以在\$VTK_DATA_ROOT/Data/financial.vtk中找到)。
+            如何操作该数据(下面的数据场可以在\$VTK\_DATA_ROOT/Data/financial.vtk中找到)。
 \begin{verbatim}
     # vtk DataFile Version 2.0
     Financial data in vtk field formats
@@ -501,7 +501,7 @@ VECTORS vectors float
 \end{verbatim}
 
 \paragraph{\quad}在这个例子中，使用六个数组表示场量。每个数组有一个分量和3188个元组。
-                六个中有五个是浮点数类型，而最后一个是unsigned_short类型的。
+                六个中有五个是浮点数类型，而最后一个是unsigned\_short类型的。
                 在data目录下提供其他示例。
 
 \section*{XML File Formats-XML文件格式}
