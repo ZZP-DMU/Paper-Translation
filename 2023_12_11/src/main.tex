@@ -197,6 +197,129 @@
         }
     }
 \end{itemize}
+\paragraph{数据集属性格式}可视化工具包(vtk)支持下面五种数据集属性：标量(一到四个分量)，向量，法线，纹理坐标(一维，二维和三维)，3X3张量
+        和场量。此外，还可以定义使用与标量数据相关联的RGBA颜色规范的查找表。点和单元都支持数据集属性。
+\paragraph{\quad}每种属性数据的类型都有一个与之相关的数据名(dataName)。这是一个用于标识具体数据的字符串(没有嵌入空格)。
+                数据名(dataName)被vtk读取器用来提取数据。因此一个文件中可以包含多个相同类型的属性数据。例如
+                定义在数据集点中的两个不同的标量场，压力和温度，可以包含在同一个文件中。(如果在vtk读取器中没有
+                指定合适的数据名(dataName)，那么只从文件中提取第一个该类型的数据。)
+\begin{itemize}
+    \item {
+        标量 \\
+        标量定义包含查询表的规范。查询表的定义是可选的。如果没有指定，将使用默认的vtk表(tableName应为"default")。
+        同时也注意numComp参数也是可选的--默认分量数量为1.(参数numComp的范围必须在(1,4)之间(含)；在vtk2.3之前的
+        vtk版本不支持这个参数)
+        \begin{verbatim}
+            SCALARS dataName dataType numComp
+            LOOKUP_TABLE tableName
+            s0
+            s1
+            ... 
+            sn-1
+        \end{verbatim}
+        颜色标量(即直接映射到颜色的unsigned char值)的定义根据每个标量值(nValues)的数量而变化。
+        如果文件格式为ASCII，那么颜色标量使用(0,1)之间的标量值(nValues)个浮点值定义。如果文件
+        格式是二进制文件，那么数据流由每个标量值的nValues个unsigned char值组成。
+        \begin{verbatim}
+            COLOR_SCALARS dataName nValues
+            c00 c01 ... c0(nValues-1)
+            c10 c11 ... c1(nValues-1)
+            ... 
+            c(n-1)0 c(n-1)1 ... c(n-1)(nValues-1)
+        \end{verbatim}
+    }
+    \item {
+        查询表 \\
+        用于标识查询表的tableName字段是一个字符串(没有插入空格)。vtk读取器使用这个标签提取特定的表格。\\
+        查找表中的每一个条目都是一个rgba[4](红-绿-蓝-alpha)数组(alpha是不透明度，其中alpha=0s是透明的)。
+        如果文件格式是ASCII，那么查询表中的值是(0,1)之间的浮点数。如果文件格式是二进制文件，数据流必须是
+        每个表格条目由四个unsigned char值组成的。
+        \begin{verbatim}
+            LOOKUP_TABLE tableName size
+            r0 g0 b0 a0
+            r1 g1 b1 a1
+            ... 
+            rsize-1 gsize-1 bsize-1 asize-1 
+        \end{verbatim}
+    }
+    \item {
+        向量\\
+        \begin{verbatim}
+            VECTORS dataName dataType
+            v0x v0y v0z
+            v1x v1y v1z
+            ... 
+            v(n-1)x v(n-1)y v(n-1)z 
+        \end{verbatim}
+    }
+    \item {
+        法线\\
+        假设法线已标准化|n|=1.
+        \begin{verbatim}
+            NORMALS dataName dataType
+            n0x n0y n0z
+            n1x n1y n1z
+            ... 
+            n(n-1)x n(n-1)y n(n-1)z 
+        \end{verbatim}
+    }
+    \item {
+        纹理坐标\\
+        支持一维，二维和三维的纹理坐标。
+        \begin{verbatim}
+            TEXTURE_COORDINATES dataName dim dataType
+            t00 t01 ... t0(dim-1)
+            t10 t11 ... t1(dim-1)
+            ... 
+            t(n-1)0 t(n-1)1 ... t(n-1)(dim-1)
+        \end{verbatim}
+    }
+    \item {
+        张量\\
+        当前仅支持3X3实值对称张量。
+        \begin{verbatim}
+            TENSORS dataName dataType
+            t^0_00 t^0_01 t^0_02
+            t^0_10 t^0_11 t^0_12
+            t^0_20 t^0_21 t^0_22
 
+            t^1_00 t^1_01 t^1_02
+            t^1_10 t^1_11 t^1_12
+            t^1_20 t^1_21 t^1_22
+            
+            ...
+            t^(n-1)_00 t^(n-1)_01 t^(n-1)_02
+            t^(n-1)_10 t^(n-1)_11 t^(n-1)_12
+            t^(n-1)_20 t^(n-1)_21 t^(n-1)_22
+        \end{verbatim}
+    }
+    \item {
+        场数据\\
+        场数据本质上是数据数组的数组。定义场数据意味着给场命名且指定了其包含数组的数量。
+        那么对于每一个数组定义了数组名arrayName(i),数组分量数量numComponents,数组中
+        元组数量numTuples以及数据类型dataType。
+        \begin{verbatim}
+            FIELD dataName numArrays
+            arrayName0 numComponents numTuples dataType
+            f00 f01 ... f0(numComponents-1)
+            f10 f11 ... f1(numComponents-1)
+            ...
+            f(numTuples-1)0 f(numTuples-1)1 ... f(numTuples-1)(numComponents-1)
+
+            arrayName1 numComponents numTuples dataType
+            f00 f01 ... f0(numComponents-1)
+            f10 f11 ... f1(numComponents-1)
+            ...
+            f(numTuples-1)0 f(numTuples-1)1 ... f(numTuples-1)(numComponents-1)
+
+            ...
+            arrayName(numArrays-1) numComponents numTuples dataType
+            f00 f01 ... f0(numComponents-1)
+            f10 f11 ... f1(numComponents-1)
+            ...
+            f(numTuples-1)0 f(numTuples-1)1 ... f(numTuples-1)(numComponents-1)
+        \end{verbatim}
+    }
+\end{itemize}
 
 \end{document}
